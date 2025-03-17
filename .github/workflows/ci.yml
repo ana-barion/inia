@@ -28,22 +28,22 @@ jobs:
 
       - name: Format check
         run: pnpm prettier --check "**/*.{js,jsx,ts,tsx,json,md,css,yml}" --ignore-path .gitignore
-      
+
       - name: Check for duplicate dependencies
         run: npx depcheck
-      
+
       - name: Check for known vulnerabilities
         run: npx audit-ci --moderate
-        continue-on-error: true  # Make non-blocking for students
+        continue-on-error: true # Make non-blocking for students
 
       - name: Build
         run: pnpm build
-      
+
       - name: Check bundle size
         run: |
           SIZE=$(du -sh .next/static 2>/dev/null | cut -f1)
           echo "Current bundle size: $SIZE"
-          
+
   accessibility:
     name: Accessibility Check
     runs-on: ubuntu-latest
@@ -57,20 +57,20 @@ jobs:
         with:
           node-version: 20
           cache: "pnpm"
-          
+
       - name: Install dependencies
         run: pnpm install
-        
+
       - name: Install a11y tools
         run: pnpm add -D pa11y-ci
-      
+
       - name: Build
         run: pnpm build
-      
+
       - name: Start server
         run: pnpm start & sleep 5
-        
+
       - name: Run a11y checks
         run: |
           npx pa11y-ci http://localhost:3000
-        continue-on-error: true  # Make non-blocking for students
+        continue-on-error: true # Make non-blocking for students
