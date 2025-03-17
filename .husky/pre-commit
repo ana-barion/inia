@@ -1,0 +1,3 @@
+#!/bin/sh
+pnpm run lint --fix && pnpm run format
+npx lint-staged
