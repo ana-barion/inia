@@ -905,7 +905,11 @@ We use GitHub Actions for continuous integration. The CI pipeline automatically:
 3. Performs the following checks:
    - Linting with ESLint
    - Format checking with Prettier
+   - Checking for duplicate dependencies
+   - Scanning for known vulnerabilities
    - Building the Next.js application
+   - Reporting on bundle size
+   - Running accessibility checks
 
 This helps catch errors early and ensures code quality.
 
