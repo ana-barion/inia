@@ -15,6 +15,10 @@ package-lock.json
 pnpm-lock.yaml
 yarn.lock
 
+# Config files
+.depcheckrc
+.depcheckrc.json
+
 # Misc
 .DS_Store
 *.pem

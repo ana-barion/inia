@@ -27,7 +27,59 @@ jobs:
         run: pnpm lint
 
       - name: Format check
-        run: pnpm prettier --check "**/*.{js,jsx,ts,tsx,json,md,css,yml}" --ignore-path .gitignore
+        run: |
+          # Specially handle YAML files first to show clear errors
+          find .github -name "*.yml" -exec pnpm prettier --check {} \;
+          # Then check all other files
+          pnpm prettier --check "**/*.{js,jsx,ts,tsx,json,md,css}" --ignore-path .gitignore
+
+      - name: Check for duplicate dependencies
+        run: npx depcheck || true # Make non-blocking for students
+
+      - name: Check for known vulnerabilities
+        run: npx audit-ci --moderate
+        continue-on-error: true # Make non-blocking for students
 
       - name: Build
         run: pnpm build
+
+      - name: Check bundle size
+        run: |
+          SIZE=$(du -sh .next/static 2>/dev/null | cut -f1)
+          echo "Current bundle size: $SIZE"
+
+  accessibility:
+    name: Accessibility Check
+    runs-on: ubuntu-latest
+    needs: check
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Install a11y tools and dependencies
+        run: |
+          # Install pa11y-ci with puppeteer that includes Chrome
+          pnpm add -D pa11y-ci puppeteer
+          # Install Chrome dependencies
+          sudo apt-get update
+          sudo apt-get install -y libgbm-dev
+
+      - name: Build
+        run: pnpm build
+
+      - name: Start server
+        run: pnpm start & sleep 5
+
+      - name: Run a11y checks
+        run: |
+          PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome npx pa11y-ci http://localhost:3000
+        continue-on-error: true # Make non-blocking for students

@@ -1,11 +1,12 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-# Run ESLint
-pnpm run lint --fix
+# Ensure all workflow files are formatted
+find .github/workflows -name "*.yml" -exec pnpm prettier --write {} \;
 
-# Format all files with Prettier
-pnpm run format
-
-# Run lint-staged for staged files
+# Format all staged files with lint-staged 
+# This checks only files that are being committed
 npx lint-staged
+
+# Add any newly formatted files to the commit
+git diff --name-only | xargs -I{} git add {} || true
