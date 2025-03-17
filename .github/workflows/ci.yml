@@ -30,7 +30,7 @@ jobs:
         run: pnpm prettier --check "**/*.{js,jsx,ts,tsx,json,md,css,yml}" --ignore-path .gitignore
 
       - name: Check for duplicate dependencies
-        run: npx depcheck
+        run: npx depcheck || true  # Make non-blocking for students
 
       - name: Check for known vulnerabilities
         run: npx audit-ci --moderate

@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css,yml}\" --ignore-path .prettierignore"
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css,yml}\" --ignore-path .prettierignore",
+    "check-deps": "depcheck"
   },
   "dependencies": {
     "next": "15.2.2",
