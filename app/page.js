@@ -31,13 +31,15 @@ export default function Home() {
             href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Deploy to Vercel (opens in new tab)"
           >
             <Image
               className="dark:invert"
               src="/vercel.svg"
-              alt="Vercel logomark"
+              alt=""
               width={20}
               height={20}
+              aria-hidden="true"
             />
             Deploy now
           </a>
@@ -46,6 +48,7 @@ export default function Home() {
             href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Read our documentation (opens in new tab)"
           >
             Read our docs
           </a>
@@ -57,13 +60,14 @@ export default function Home() {
           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Learn Next.js (opens in new tab)"
         >
           <Image
-            aria-hidden
             src="/file.svg"
-            alt="File icon"
+            alt=""
             width={16}
             height={16}
+            aria-hidden="true"
           />
           Learn
         </a>
@@ -72,13 +76,14 @@ export default function Home() {
           href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="View examples (opens in new tab)"
         >
           <Image
-            aria-hidden
             src="/window.svg"
-            alt="Window icon"
+            alt=""
             width={16}
             height={16}
+            aria-hidden="true"
           />
           Examples
         </a>
@@ -87,13 +92,14 @@ export default function Home() {
           href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Go to Next.js website (opens in new tab)"
         >
           <Image
-            aria-hidden
             src="/globe.svg"
-            alt="Globe icon"
+            alt=""
             width={16}
             height={16}
+            aria-hidden="true"
           />
           Go to nextjs.org →
         </a>
