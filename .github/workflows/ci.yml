@@ -27,10 +27,14 @@ jobs:
         run: pnpm lint
 
       - name: Format check
-        run: pnpm prettier --check "**/*.{js,jsx,ts,tsx,json,md,css,yml}" --ignore-path .gitignore
+        run: |
+          # Specially handle YAML files first to show clear errors
+          find .github -name "*.yml" -exec pnpm prettier --check {} \;
+          # Then check all other files
+          pnpm prettier --check "**/*.{js,jsx,ts,tsx,json,md,css}" --ignore-path .gitignore
 
       - name: Check for duplicate dependencies
-        run: npx depcheck || true  # Make non-blocking for students
+        run: npx depcheck || true # Make non-blocking for students
 
       - name: Check for known vulnerabilities
         run: npx audit-ci --moderate
