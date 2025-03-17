@@ -1,9 +1,9 @@
-import globals from "globals";
-import js from "@eslint/js";
-import nextPlugin from "eslint-config-next";
-import { FlatCompat } from "@eslint/eslintrc";
 import path from "path";
 import { fileURLToPath } from "url";
+
+import { FlatCompat } from "@eslint/eslintrc";
+import js from "@eslint/js";
+import globals from "globals";
 
 // ESLint v9 flat config migration
 const __filename = fileURLToPath(import.meta.url);
@@ -14,7 +14,7 @@ const compat = new FlatCompat({
   recommendedConfig: js.configs.recommended,
 });
 
-export default [
+const config = [
   js.configs.recommended,
   ...compat.extends(
     "next/core-web-vitals",
@@ -39,9 +39,17 @@ export default [
         },
       },
     },
+    linterOptions: {
+      reportUnusedDisableDirectives: true,
+    },
     rules: {
       "react/react-in-jsx-scope": "off",
-      "react/prop-types": "off",
+      "react/prop-types": "error",
+      "@next/next/no-html-link-for-pages": "error",
+      "jsx-a11y/alt-text": "error",
+      "jsx-a11y/aria-props": "error",
+      "jsx-a11y/aria-role": "error",
+      "react/no-unescaped-entities": "error",
       "import/order": [
         "error",
         {
@@ -67,3 +75,5 @@ export default [
     ignores: ["node_modules/**", ".next/**", "out/**", "public/**"],
   },
 ];
+
+export default config;

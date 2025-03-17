@@ -1,5 +1,7 @@
 "use client";
 
+import PropTypes from "prop-types";
+
 /**
  * A reusable button component
  * @param {string} variant - The button style (primary, secondary, etc.)
@@ -34,3 +36,10 @@ export default function Button({
     </button>
   );
 }
+
+Button.propTypes = {
+  variant: PropTypes.oneOf(["primary", "secondary", "danger"]),
+  size: PropTypes.oneOf(["small", "medium", "large"]),
+  onClick: PropTypes.func,
+  children: PropTypes.node.isRequired,
+};
