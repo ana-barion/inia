@@ -1,0 +1,17 @@
+{
+  "ignores": [
+    "@babel/*",
+    "tailwindcss",
+    "@tailwindcss/*",
+    "pa11y-ci",
+    "audit-ci",
+    "depcheck",
+    "prettier",
+    "eslint*",
+    "husky",
+    "lint-staged"
+  ],
+  "ignoreDirs": [".next", "node_modules", "public"],
+  "ignoreBinPackage": true,
+  "skipMissing": true
+}

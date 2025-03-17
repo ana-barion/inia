@@ -277,6 +277,8 @@ Here's a detailed explanation of the project structure:
 /
 ├── .github/              # GitHub specific files
 │   ├── ISSUE_TEMPLATE/   # Templates for creating issues
+│   ├── workflows/        # GitHub Actions CI/CD workflows
+│   │   └── ci.yml        # Continuous Integration configuration
 │   └── pull_request_template.md # Template for creating pull requests
 ├── .vscode/              # VS Code settings
 │   └── settings.json     # Editor settings for consistent formatting
@@ -314,6 +316,8 @@ Simple explanation of each part:
 - **.github/**: Contains templates for GitHub issues and pull requests
 
   - **ISSUE_TEMPLATE/**: Templates to help team members create standardized issues
+  - **workflows/**: GitHub Actions configurations for automating builds and checks
+    - **ci.yml**: Configuration for our continuous integration pipeline
   - **pull_request_template.md**: Template to help standardize pull requests
 
 - **.vscode/**: Visual Studio Code settings for consistent development
@@ -890,7 +894,32 @@ You can test browser compatibility by:
 2. Using browser developer tools to test responsive designs
 3. Checking for any JavaScript errors in the console
 
-## Deployment
+## Continuous Integration and Deployment
+
+### CI Pipeline
+
+We use GitHub Actions for continuous integration. The CI pipeline automatically:
+
+1. Runs on every push to `main` and `testing` branches
+2. Runs on every pull request to `main` and `testing` branches
+3. Performs the following checks:
+   - Linting with ESLint
+   - Format checking with Prettier
+   - Checking for duplicate dependencies
+   - Scanning for known vulnerabilities
+   - Building the Next.js application
+   - Reporting on bundle size
+   - Running accessibility checks
+
+This helps catch errors early and ensures code quality.
+
+To see CI results:
+
+1. After pushing your branch or creating a PR, go to the GitHub repository
+2. Click on the "Actions" tab
+3. Find your workflow run and check the results
+
+If the CI checks fail, you'll need to fix the issues before your PR can be merged.
 
 ### Environments
 

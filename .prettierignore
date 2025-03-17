@@ -1,0 +1,31 @@
+# Dependency directories
+node_modules/
+
+# Build directories
+.next/
+out/
+build/
+dist/
+
+# Coverage directories
+coverage/
+
+# Lock files
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Config files
+.depcheckrc
+.depcheckrc.json
+
+# Misc
+.DS_Store
+*.pem
+
+# Generated files
+.vercel
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
