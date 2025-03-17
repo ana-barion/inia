@@ -65,8 +65,13 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Install a11y tools
-        run: pnpm add -D pa11y-ci
+      - name: Install a11y tools and dependencies
+        run: |
+          # Install pa11y-ci with puppeteer that includes Chrome
+          pnpm add -D pa11y-ci puppeteer
+          # Install Chrome dependencies
+          sudo apt-get update
+          sudo apt-get install -y libgbm-dev
 
       - name: Build
         run: pnpm build
@@ -76,5 +81,5 @@ jobs:
 
       - name: Run a11y checks
         run: |
-          npx pa11y-ci http://localhost:3000
+          PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome npx pa11y-ci http://localhost:3000
         continue-on-error: true # Make non-blocking for students
