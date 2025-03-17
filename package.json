@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky",
-    "format": "prettier --write ."
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css,yml}\" --ignore-path .prettierignore"
   },
   "dependencies": {
     "next": "15.2.2",
