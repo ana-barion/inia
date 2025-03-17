@@ -910,6 +910,7 @@ We use GitHub Actions for continuous integration. The CI pipeline automatically:
 This helps catch errors early and ensures code quality.
 
 To see CI results:
+
 1. After pushing your branch or creating a PR, go to the GitHub repository
 2. Click on the "Actions" tab
 3. Find your workflow run and check the results

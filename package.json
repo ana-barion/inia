@@ -46,6 +46,9 @@
     "**/*.{js,jsx,css,md}": [
       "eslint --fix",
       "prettier --write"
+    ],
+    "*.{json,yml,yaml,md}": [
+      "prettier --write"
     ]
   }
 }
