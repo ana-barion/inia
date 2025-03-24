@@ -1,14 +1,12 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
     <main>
-      <h1>INIA’s Inhibitor/Engager Mechanism</h1>
+      <h1>INIA&apos;s Inhibitor/Engager Mechanism</h1>
       <p>
-        The Inhibitor/Engager Mechanism in bioelectronic medicine refers to the use of
-        non-invasive stimulation technologies to modulate immune responses by either inhibiting
-        or engaging specific biological pathways. This approach is useful in neuromodulation
-        therapies for autoimmune and inflammatory diseases.
+        The Inhibitor/Engager Mechanism in bioelectronic medicine refers to the use of non-invasive
+        stimulation technologies to modulate immune responses by either inhibiting or engaging
+        specific biological pathways. This approach is useful in neuromodulation therapies for
+        autoimmune and inflammatory diseases.
       </p>
 
       <p>
@@ -32,7 +30,7 @@ export default function Home() {
         inflammation levels and dynamically adjusts stimulation parameters to either inhibit or
         engage immune activity as needed. This adaptive approach helps reduce reliance on
         immunosuppressants in transplant patients and individuals with inflammatory diseases. By
-        offering real-time, drug-free immune regulation, INIA's technology presents a promising
+        offering real-time, drug-free immune regulation, INIA&apos;s technology presents a promising
         alternative for managing immune-related conditions.
       </p>
 
@@ -49,12 +47,11 @@ export default function Home() {
           modulation.
         </li>
         <li>
-          <strong>Dual Functionality (Inhibitor & Engager):</strong>
+          <strong>Dual Functionality (Inhibitor &amp; Engager):</strong>
           <ul>
             <li>
-              When inflammation is too high, the device suppresses cytokine overproduction,
-              reducing symptoms in conditions like psoriasis, rheumatoid arthritis, and transplant
-              rejection.
+              When inflammation is too high, the device suppresses cytokine overproduction, reducing
+              symptoms in conditions like psoriasis, rheumatoid arthritis, and transplant rejection.
             </li>
             <li>
               When immune function is too low, it enhances cytokine production to improve immune
@@ -64,8 +61,8 @@ export default function Home() {
         </li>
         <li>
           <strong>At-Home Administration:</strong> Unlike biologic drugs or immunosuppressants that
-          require hospital visits or injections, INIA’s device is designed for easy, at-home use,
-          making immune therapy more accessible and convenient.
+          require hospital visits or injections, INIA&apos;s device is designed for easy, at-home
+          use, making immune therapy more accessible and convenient.
         </li>
       </ul>
     </main>
