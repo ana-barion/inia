@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from "react";
 
+import Image from "next/image";
+
 export default function News() {
   const [activeFilter, setActiveFilter] = useState("All");
   const [email, setEmail] = useState("");
@@ -88,6 +90,29 @@ export default function News() {
               </div>
             </div>
           ))}
+      </div>
+
+      <div className="container mx-auto px-4 py-20 flex flex-col justify-center items-center border-b border-gray-300">
+        <div className="w-full max-w-md rounded-lg border border-gray-300 bg-white overflow-hidden">
+          {/* Image thumbnail */}
+          <Image
+            src=""
+            alt="Inia news page"
+            width={300}
+            height={150}
+            className="rounded-t-md object-cover"
+          />
+
+          {/* News metadata */}
+          <div className="p-4">
+            <div className="flex items-center">
+              <span className="text-xs text-gray-900 mr-6">Type</span>
+              <div className="text-xs text-gray-900 border rounded-md px-3 py-1">
+                Date
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div className="container mx-auto px-4 py-20 flex flex-col justify-center items-center border-b border-gray-300">
         <h3 className="text-xl font-semibold">
