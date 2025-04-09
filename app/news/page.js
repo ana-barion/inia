@@ -40,20 +40,14 @@ export default function News() {
   const [currentPage, setCurrentPage] = useState(1);
   const [newsItems, setNewsItems] = useState(newsData);
 
-  const filters = ["All", "Press Releases", "Research", "Media"];
+  const filters = ["All", "Press Release", "Research", "Media"];
 
   const handleFilterClick = (filter) => {
     setActiveFilter(filter);
     if (filter === "All") {
       setNewsItems(newsData);
     } else {
-      setNewsItems(
-        newsData.filter(
-          (news) =>
-            news.type === filter ||
-            (filter === "Press Releases" && news.type === "Press Release"),
-        ),
-      );
+      setNewsItems(newsData.filter((news) => news.type === filter));
     }
   };
 
