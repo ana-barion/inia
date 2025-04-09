@@ -3,15 +3,58 @@ import React, { useState } from "react";
 
 import Image from "next/image";
 
+const newsData = [
+  {
+    id: 1,
+    type: "Research",
+    title: "Breakthrough in Ultrasound Technology for Psoriasis Treatment",
+    description:
+      "INIA Biosciences announces significant advancement in bioelectronic medicine...",
+    date: "March 30, 2025",
+    featured: true,
+    imageURL: "/next.svg",
+  },
+  {
+    id: 2,
+    type: "Press Release",
+    title: "INIA Expands Clinical Trial Network",
+    description: "New partnerships established with leading medical centers...",
+    date: "March 15, 2025",
+    featured: false,
+    imageURL: "/next.svg",
+  },
+  {
+    id: 3,
+    type: "Media",
+    title: "Test data",
+    description: "This is test data...",
+    date: "March 1, 2025",
+    featured: false,
+    imageURL: "/next.svg",
+  },
+];
+
 export default function News() {
   const [activeFilter, setActiveFilter] = useState("All");
   const [email, setEmail] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [newsItems, setNewsItems] = useState(newsData);
 
   const filters = ["All", "Press Releases", "Research", "Media"];
 
   const handleFilterClick = (filter) => {
     setActiveFilter(filter);
+    if (filter === "All") {
+      setNewsItems(newsData);
+    } else {
+      setNewsItems(
+        newsData.filter(
+          (news) =>
+            news.type === filter ||
+            (filter === "Press Releases" && news.type === "Press Release"),
+        ),
+      );
+    }
   };
 
   const handlePageChange = (page) => {
@@ -20,40 +63,8 @@ export default function News() {
     }
   };
 
-  const newsData = [
-    {
-      id: 1,
-      type: "Research",
-      title: "Breakthrough in Ultrasound Technology for Psoriasis Treatment",
-      description:
-        "INIA Biosciences announces significant advancement in bioelectronic medicine...",
-      date: "March 30, 2025",
-      featured: true,
-      imageURL: "/next.svg",
-    },
-    {
-      id: 2,
-      type: "Press Release",
-      title: "INIA Expands Clinical Trial Network",
-      description:
-        "New partnerships established with leading medical centers...",
-      date: "March 15, 2025",
-      featured: false,
-      imageURL: "/next.svg",
-    },
-    {
-      id: 3,
-      type: "Media",
-      title: "Test data",
-      description: "This is test data...",
-      date: "March 1, 2025",
-      featured: false,
-      imageURL: "/next.svg",
-    },
-  ];
-
-  const totalPages = newsData.length;
-  const currentNews = newsData[currentPage - 1];
+  const totalPages = newsItems.length;
+  const currentNews = newsItems[currentPage - 1];
 
   return (
     <div className="font-sans bg-gray-50 text-gray-900">
