@@ -6,11 +6,18 @@ import Image from "next/image";
 export default function News() {
   const [activeFilter, setActiveFilter] = useState("All");
   const [email, setEmail] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
   const filters = ["All", "Press Releases", "Research", "Media"];
 
   const handleFilterClick = (filter) => {
     setActiveFilter(filter);
+  };
+
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
   };
 
   const newsData = [
@@ -20,8 +27,9 @@ export default function News() {
       title: "Breakthrough in Ultrasound Technology for Psoriasis Treatment",
       description:
         "INIA Biosciences announces significant advancement in bioelectronic medicine...",
-      date: "March 15, 2025",
+      date: "March 30, 2025",
       featured: true,
+      imageURL: "/next.svg",
     },
     {
       id: 2,
@@ -29,10 +37,23 @@ export default function News() {
       title: "INIA Expands Clinical Trial Network",
       description:
         "New partnerships established with leading medical centers...",
+      date: "March 15, 2025",
+      featured: false,
+      imageURL: "/next.svg",
+    },
+    {
+      id: 3,
+      type: "Media",
+      title: "Test data",
+      description: "This is test data...",
       date: "March 1, 2025",
       featured: false,
+      imageURL: "/next.svg",
     },
   ];
+
+  const totalPages = newsData.length;
+  const currentNews = newsData[currentPage - 1];
 
   return (
     <div className="font-sans bg-gray-50 text-gray-900">
@@ -93,27 +114,57 @@ export default function News() {
       </div>
 
       <div className="container mx-auto px-4 py-20 flex flex-col justify-center items-center border-b border-gray-300">
-        <div className="w-full max-w-md rounded-lg border border-gray-300 bg-white overflow-hidden">
-          {/* Image thumbnail */}
-          <Image
-            src=""
-            alt="Inia news page"
-            width={300}
-            height={150}
-            className="rounded-t-md object-cover"
-          />
+        <div className="w-full h-[400px] max-w-md rounded-lg border border-gray-300 bg-white overflow-hidden shadow-sm">
+          <div className="bg-gray-200 h-48 flex items-center justify-center text-gray-500 text-sm">
+            <Image
+              src={currentNews.imageURL}
+              alt="INIA news page"
+              width={500}
+              height={200}
+              className="w-full h-full object-cover"
+            />
+          </div>
 
-          {/* News metadata */}
           <div className="p-4">
-            <div className="flex items-center">
-              <span className="text-xs text-gray-900 mr-6">Type</span>
-              <div className="text-xs text-gray-900 border rounded-md px-3 py-1">
-                Date
-              </div>
+            <div className="flex items-center gap-2 mb-4">
+              <span className="bg-gray-200 text-gray-600 text-xs px-3 py-1 rounded-full">
+                {currentNews.type}
+              </span>
+              <span className="text-sm text-gray-500">{currentNews.date}</span>
             </div>
+
+            <h3 className="font-medium text-sm text-gray-900 mb-2">
+              {currentNews.title}
+            </h3>
+            <p className="text-sm text-gray-600 mb-8">
+              {currentNews.description}
+            </p>
+
+            <button className="text-gray-900 text-sm hover:cursor-pointer">
+              Read More →
+            </button>
           </div>
         </div>
+
+        <div className="flex gap-2 items-center mt-8">
+          <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="px-3 py-2 border rounded disabled:opacity-50 hover:cursor-pointer"
+          >
+            <p className="w-4 h-4">←</p>
+          </button>
+
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className="px-3 py-2 border rounded disabled:opacity-50 hover:cursor-pointer"
+          >
+            <p className="w-4 h-4">→</p>
+          </button>
+        </div>
       </div>
+
       <div className="container mx-auto px-4 py-20 flex flex-col justify-center items-center border-b border-gray-300">
         <h3 className="text-xl font-semibold">
           Stay Updated with INIA Biosciences
