@@ -4,7 +4,7 @@ export default function Home() {
         <article>
             <h1>Psoriasis</h1>
             <p>
-                Psoriasis is hello, hello chronic autoimmune condition that affects the skin, leading to periods of flare-ups and remission. It results from an overactive immune response that accelerates skin cell production, causing visible skin changes that may be accompanied by discomfort or sensitivity. The condition most commonly appears on areas like the scalp, elbows, knees, and lower back but can occur anywhere on the body.
+                Psoriasis is a chronic autoimmune condition that affects the skin, leading to periods of flare-ups and remission. It results from an overactive immune response that accelerates skin cell production, causing visible skin changes that may be accompanied by discomfort or sensitivity. The condition most commonly appears on areas like the scalp, elbows, knees, and lower back but can occur anywhere on the body.
             </p>
             <p>
                 In the United States, psoriasis affects approximately 3% of adults aged 20 years or older, which translates to over 7.5 million individuals (<a href="https://www.psoriasis.org/about-psoriasis/" target="_blank">National Psoriasis Foundation</a>).
