@@ -20,12 +20,23 @@ jobs:
           node-version: 20
           cache: "pnpm"
 
+      # Install project dependencies
       - name: Install dependencies
         run: pnpm install
 
+      # Auto-fix linting issues
+      - name: Auto-fix Linting Issues
+        run: pnpm lint --fix
+
+      # Auto-format code using Prettier
+      - name: Format Code with Prettier
+        run: pnpm prettier --write "."
+
+      # Lint check
       - name: Lint
         run: pnpm lint
 
+      # Format check
       - name: Format check
         run: |
           # Specially handle YAML files first to show clear errors
@@ -33,16 +44,20 @@ jobs:
           # Then check all other files
           pnpm prettier --check "**/*.{js,jsx,ts,tsx,json,md,css}" --ignore-path .gitignore
 
+      # Check for duplicate dependencies
       - name: Check for duplicate dependencies
         run: npx depcheck || true # Make non-blocking for students
 
+      # Check for known vulnerabilities
       - name: Check for known vulnerabilities
         run: npx audit-ci --moderate
         continue-on-error: true # Make non-blocking for students
 
+      # Build step
       - name: Build
         run: pnpm build
 
+      # Check bundle size
       - name: Check bundle size
         run: |
           SIZE=$(du -sh .next/static 2>/dev/null | cut -f1)
@@ -62,9 +77,11 @@ jobs:
           node-version: 20
           cache: "pnpm"
 
+      # Install dependencies
       - name: Install dependencies
         run: pnpm install
 
+      # Install a11y tools and dependencies
       - name: Install a11y tools and dependencies
         run: |
           # Install pa11y-ci with puppeteer that includes Chrome
@@ -73,12 +90,15 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libgbm-dev
 
+      # Build
       - name: Build
         run: pnpm build
 
+      # Start server
       - name: Start server
         run: pnpm start & sleep 5
 
+      # Run accessibility checks
       - name: Run a11y checks
         run: |
           PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome npx pa11y-ci http://localhost:3000
