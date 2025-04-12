@@ -33,6 +33,12 @@ importers:
       '@eslint/js':
         specifier: ^9.22.0
         version: 9.22.0
+<<<<<<< HEAD
+=======
+      '@next/eslint-plugin-next':
+        specifier: ^15.2.4
+        version: 15.2.4
+>>>>>>> feature/inhibitorEngager
       '@tailwindcss/postcss':
         specifier: ^4
         version: 4.0.14
@@ -408,6 +414,12 @@ packages:
   '@next/eslint-plugin-next@15.2.2':
     resolution: {integrity: sha512-1+BzokFuFQIfLaRxUKf2u5In4xhPV7tUgKcK53ywvFl6+LXHWHpFkcV7VNeKlyQKUotwiq4fy/aDNF9EiUp4RQ==}
 
+<<<<<<< HEAD
+=======
+  '@next/eslint-plugin-next@15.2.4':
+    resolution: {integrity: sha512-O8ScvKtnxkp8kL9TpJTTKnMqlkZnS+QxwoQnJwPGBxjBbzd6OVVPEJ5/pMNrktSyXQD/chEfzfFzYLM6JANOOQ==}
+
+>>>>>>> feature/inhibitorEngager
   '@next/swc-darwin-arm64@15.2.2':
     resolution: {integrity: sha512-HNBRnz+bkZ+KfyOExpUxTMR0Ow8nkkcE6IlsdEa9W/rI7gefud19+Sn1xYKwB9pdCdxIP1lPru/ZfjfA+iT8pw==}
     engines: {node: '>= 10'}
@@ -3086,6 +3098,13 @@ snapshots:
     dependencies:
       fast-glob: 3.3.1
 
+<<<<<<< HEAD
+=======
+  '@next/eslint-plugin-next@15.2.4':
+    dependencies:
+      fast-glob: 3.3.1
+
+>>>>>>> feature/inhibitorEngager
   '@next/swc-darwin-arm64@15.2.2':
     optional: true
 
