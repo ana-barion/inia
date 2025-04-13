@@ -1,6 +1,7 @@
+import Image from "next/image";
+
 import Footer from "../../components/layout/Footer";
 import Header from "../../components/layout/Header";
-import Image from "next/image";
 
 export default function SciencePage() {
   return (
@@ -26,14 +27,21 @@ export default function SciencePage() {
               { img: "battery.png", text: "Recharge" },
             ].map((step, index) => (
               <div key={index} className="flex flex-col items-center">
-                <img
-                  src={`images/${step.img}`}
+                <Image
+                  src={`images/${step.img}`} /* NOTE: Ensure 'images/${step.img}' resolves correctly. Consider '/images/${step.img}' if images are in public/images */
                   alt={step.text}
-                  className="w-20 h-20 border-2 border-[#355D84] rounded-full bg-[#EBEDF1] p-3"
+                  width={80}
+                  height={80}
+                  className="border-2 border-[#355D84] rounded-full bg-[#EBEDF1] p-3"
                 />
                 <p className="text-lg mt-2">{step.text}</p>
                 {index < 3 && (
-                  <img src="arrow.png" alt="arrow" className="w-24 h-20" />
+                  <Image
+                    src="arrow.png"
+                    alt="arrow"
+                    width={96}
+                    height={80}
+                  /> /* NOTE: Ensure 'arrow.png' resolves correctly. Consider '/arrow.png' if image is in public */
                 )}
               </div>
             ))}
