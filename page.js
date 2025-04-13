@@ -56,8 +56,8 @@ export default function TeamPage() {
           <h1 className="text-4xl font-semibold mb-4">Meet Our Team</h1>
           <p className="max-w-2xl mx-auto text-gray-600">
             Our dedicated team of scientists, engineers, and healthcare
-            professionals are working together to revolutionize the treatment
-            of chronic inflammation through innovative bioelectronic medicine.
+            professionals are working together to revolutionize the treatment of
+            chronic inflammation through innovative bioelectronic medicine.
           </p>
         </section>
 
