@@ -44,7 +44,7 @@ const config = [
       "import/resolver": {
         node: {
           extensions: [".js", ".jsx"],
-          paths: ["."]
+          paths: ["."],
         },
         // Remove alias resolver since package isn't installed
       },
@@ -60,9 +60,12 @@ const config = [
       "jsx-a11y/aria-props": "error",
       "jsx-a11y/aria-role": "error",
       "react/no-unescaped-entities": "error",
-      "import/no-unresolved": ["error", { 
-        "ignore": ["^@/"] // Ignore imports starting with @/
-      }],
+      "import/no-unresolved": [
+        "error",
+        {
+          ignore: ["^@/"], // Ignore imports starting with @/
+        },
+      ],
       "import/order": [
         "error",
         {
