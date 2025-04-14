@@ -1,18 +1,37 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import Image from "next/image";
-import { useInView } from "react-intersection-observer";
 
 import Footer from "../../components/layout/Footer";
 import Header from "../../components/layout/Header";
 
 export default function SciencePage() {
-  const { ref: pageRef, inView: pageInView } = useInView({
-    triggerOnce: true,
-    threshold: 0.2,
-  });
+  const pageRef = useRef(null);
+  const [pageInView, setPageInView] = useState(false);
+  
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setPageInView(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+    
+    if (pageRef.current) {
+      observer.observe(pageRef.current);
+    }
+    
+    return () => {
+      if (pageRef.current) {
+        observer.disconnect();
+      }
+    };
+  }, []);
 
   const ResearchAccordion = () => {
     const items = [
