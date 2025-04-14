@@ -19,14 +19,19 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html
+      lang="en"
+      className={`dark ${geistSans.variable} ${geistMono.variable}`} // ← dark mode enabled here
+    >
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/dolphin.png" type="image/svg+xml" />
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
       </head>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased bg-white text-black dark:bg-black dark:text-white">
+        {children}
+      </body>
     </html>
   );
 }
