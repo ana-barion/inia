@@ -63,7 +63,7 @@ const config = [
       "import/no-unresolved": [
         "error",
         {
-          ignore: ["^@/"], // Ignore imports starting with @/
+          ignore: ["^@/", "react-intersection-observer"], // Ignore imports starting with @/ and the react-intersection-observer package
         },
       ],
       "import/order": [
