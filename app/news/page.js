@@ -32,6 +32,58 @@ const newsData = [
     featured: false,
     imageURL: "/next.svg",
   },
+  {
+    id: 3,
+    type: "Research",
+    title: "Study Highlights IL-17's Role in Psoriasis Inflammation",
+    description:
+      "Recent findings underscore the pivotal role of interleukin-17 in promoting inflammation and keratinocyte activation in psoriasis, reinforcing its status as a key therapeutic target.",
+    date: "March 10, 2025",
+    featured: false,
+    imageURL: "/next.svg",
+  },
+  {
+    id: 4,
+    type: "Research",
+    title: "Ultrasound Therapy Shows Promise in Plaque Psoriasis Treatment",
+    description:
+      "Low-frequency ultrasound therapy has been found to aid in the treatment of chronic plaque psoriasis, offering a non-invasive alternative to traditional methods.",
+    date: "March 5, 2025",
+    featured: false,
+    imageURL: "/next.svg",
+  },
+  {
+    id: 5,
+    type: "Press Release",
+    title:
+      "Advancements in High-Frequency Ultrasound for Psoriatic Skin Assessment",
+    description:
+      "High-frequency ultrasonography emerges as a valuable tool for non-invasive evaluation of psoriatic skin, enabling detailed assessment of inflammation and skin thickness.",
+    date: "February 25, 2025",
+    featured: false,
+    imageURL: "/next.svg",
+  },
+  {
+    id: 6,
+    type: "Research",
+    title: "IL-23 Identified as a Key Driver in Psoriasis Pathogenesis",
+    description:
+      "New research identifies interleukin-23 as a central cytokine in the development of psoriasis, paving the way for targeted therapies aimed at this specific pathway.",
+    date: "February 15, 2025",
+    featured: false,
+    imageURL: "/next.svg",
+  },
+  {
+    id: 7,
+    type: "Research",
+    title:
+      "Ultrasound Monitoring Enhances Evaluation of Biologic Treatments in Psoriasis",
+    description:
+      "Combining clinical, dermoscopic, and ultrasonic assessments provides a comprehensive approach to monitor the efficacy of biologic treatments in moderate-to-severe plaque psoriasis.",
+    date: "February 5, 2025",
+    featured: false,
+    imageURL: "/next.svg",
+  },
 ];
 
 export default function News() {
