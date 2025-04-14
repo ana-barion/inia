@@ -1,7 +1,9 @@
 "use client";
 
-import Header from "@/components/layout/Header";
+import Image from "next/image";
+
 import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
 
 const leadership = [
   {
@@ -60,8 +62,8 @@ export default function TeamPage() {
           <h1 className="text-4xl font-semibold mb-4">Meet Our Team</h1>
           <p className="max-w-2xl mx-auto text-gray-600">
             Our dedicated team of scientists, engineers, and healthcare
-            professionals are working together to revolutionize the treatment
-            of chronic inflammation through innovative bioelectronic medicine.
+            professionals are working together to revolutionize the treatment of
+            chronic inflammation through innovative bioelectronic medicine.
           </p>
         </section>
 
@@ -73,9 +75,11 @@ export default function TeamPage() {
           <div className="grid gap-10 md:grid-cols-2 max-w-5xl mx-auto">
             {leadership.map((person) => (
               <div key={person.name} className="text-center">
-                <img
+                <Image
                   src={person.image}
                   alt={person.name}
+                  width={256}
+                  height={320}
                   className="w-64 h-80 mx-auto mb-4 rounded-lg object-cover shadow"
                 />
                 <h3 className="text-lg font-semibold">{person.name}</h3>
@@ -97,9 +101,11 @@ export default function TeamPage() {
                 key={member.name}
                 className="bg-white border rounded-xl p-6 text-center shadow-sm"
               >
-                <img
+                <Image
                   src={member.image}
                   alt={member.name}
+                  width={96}
+                  height={96}
                   className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
                 />
                 <h3 className="font-medium">{member.name}</h3>
