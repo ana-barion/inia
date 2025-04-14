@@ -8,7 +8,7 @@ export default function Home() {
 
         <section>
           <h2 className="text-2xl font-semibold">
-            🧬 Introduction: Framing the Science
+            Introduction: Framing the Science
           </h2>
           <p>
             Every day, millions of people suffer from chronic inflammatory
@@ -35,7 +35,7 @@ export default function Home() {
 
         <section>
           <h2 className="text-2xl font-semibold">
-            🧠 What Is the Inflammatory Reflex?
+            What Is the Inflammatory Reflex?
           </h2>
           <p>
             <strong>
@@ -61,7 +61,7 @@ export default function Home() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-semibold">💡 Why It Matters</h2>
+          <h2 className="text-2xl font-semibold">Why It Matters</h2>
           <p>
             <strong>
               [Image Placeholder: Illustration of inflammation in the body with
@@ -124,7 +124,7 @@ export default function Home() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-semibold">🤝 Supported by MIT Sandbox</h2>
+          <h2 className="text-2xl font-semibold">Supported by MIT Sandbox</h2>
           <p>
             <strong>
               [Image: MIT Sandbox logo – Suggested source: sandbox.mit.edu]
