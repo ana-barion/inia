@@ -10,7 +10,7 @@ import Header from "../../components/layout/Header";
 export default function SciencePage() {
   const pageRef = useRef(null);
   const [pageInView, setPageInView] = useState(false);
-  
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -19,13 +19,13 @@ export default function SciencePage() {
           observer.disconnect();
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
-    
+
     if (pageRef.current) {
       observer.observe(pageRef.current);
     }
-    
+
     return () => {
       if (pageRef.current) {
         observer.disconnect();
