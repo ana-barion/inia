@@ -1,5 +1,4 @@
 
-
 # Ensure all workflow files are formatted
 find .github/workflows -name "*.yml" -exec pnpm prettier --write {} \;
 
