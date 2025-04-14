@@ -57,7 +57,7 @@ export default function Home() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold">🤝 Supported by MIT Sandbox</h2>
+            <h2 className="text-2xl font-semibold"> Supported by MIT Sandbox</h2>
             <p><strong>[Image: MIT Sandbox logo – Suggested source: sandbox.mit.edu]</strong></p>
             <p>
               Inia Bioscience is proud to be supported by <strong>MIT Sandbox</strong>, an innovation program that provides funding and mentorship to early-stage teams tackling real-world challenges. This partnership highlights Inia’s commitment to advancing science through collaborative innovation and entrepreneurship.
