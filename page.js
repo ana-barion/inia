@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 
@@ -75,7 +74,7 @@ export default function TeamPage() {
                   alt={person.name}
                   width={256}
                   height={320}
-                  className="w-64 h-80 mx-auto mb-4 rounded-lg object-cover shadow"
+                  className="mx-auto mb-4 rounded-lg object-cover shadow"
                 />
                 <h3 className="text-lg font-semibold">{person.name}</h3>
                 <p className="text-sm text-gray-500">{person.title}</p>
@@ -101,7 +100,7 @@ export default function TeamPage() {
                   alt={member.name}
                   width={96}
                   height={96}
-                  className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
+                  className="rounded-full mx-auto mb-4 object-cover"
                 />
                 <h3 className="font-medium">{member.name}</h3>
                 <p className="text-sm text-gray-500 mb-3">{member.title}</p>
