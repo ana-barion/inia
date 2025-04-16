@@ -25,7 +25,7 @@ export default function ContactPage() {
             action="/api/submit"
             className="bg-white p-6 rounded-lg border border-gray-300 space-y-4"
           >
-            {/* "I am a:" label and dropdown */}
+            {/* Role Selection */}
             <div>
               <label htmlFor="role" className="block text-lg font-medium mb-1">
                 I am a...
@@ -46,7 +46,7 @@ export default function ContactPage() {
               </select>
             </div>
 
-            {/* First Name and Last Name side by side */}
+            {/* First Name and Last Name */}
             <div className="flex space-x-4">
               <div className="w-1/2">
                 <label
@@ -125,7 +125,7 @@ export default function ContactPage() {
               ></textarea>
             </div>
 
-            {/* Checkbox for Terms */}
+            {/* Terms Checkbox */}
             <div className="flex items-center">
               <input
                 type="checkbox"
@@ -139,19 +139,15 @@ export default function ContactPage() {
               </label>
             </div>
 
-            {/* Send Message Button */}
-            <button
-              type="submit"
-              className="bg-black text-white px-4 py-2 rounded w-full hover:bg-gray-800"
-            >
-              Send Message
+            {/* Animated Liquid Button */}
+            <button type="submit" className="btn liquid w-full">
+              <span>Send Message</span>
             </button>
           </form>
         </div>
 
-        {/* Right Side: Info Boxes with Map Integration in Between */}
+        {/* Right Side: Info Boxes */}
         <div className="space-y-8">
-          {/* Contact Information Box */}
           <div className="bg-[#f9fafb] p-6 rounded-lg">
             <h2 className="text-xl font-semibold mb-4">Contact Information</h2>
             <p>Address: [Placeholder Address]</p>
@@ -159,7 +155,6 @@ export default function ContactPage() {
             <p>Email: [Placeholder Email]</p>
           </div>
 
-          {/* Map Integration Box */}
           <div className="bg-[#f9fafb] p-6 rounded-lg">
             <h2 className="text-xl font-semibold mb-4">Our Location</h2>
             <div className="overflow-hidden rounded-lg">
@@ -175,13 +170,45 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Office Hours Box */}
           <div className="bg-[#f9fafb] p-6 rounded-lg">
             <h2 className="text-xl font-semibold mb-4">Office Hours</h2>
             <p>Monday to Friday: 9 AM - 5 PM</p>
           </div>
         </div>
       </div>
+
+      {/* Custom CSS for Liquid Button Animation */}
+      <style jsx>{`
+        .btn {
+          position: relative;
+          padding: 1rem 2rem;
+          font-size: 1rem;
+          font-weight: 600;
+          color: #000; /* initially black text */
+          background: none;
+          border: 2px solid #646cff;
+          border-radius: 8px;
+          cursor: pointer;
+          overflow: hidden;
+          /* transition for the text color */
+          transition: color 0.1s ease;
+        }
+
+        .liquid {
+          background: linear-gradient(#646cff 0 0) no-repeat
+            calc(200% - var(--p, 0%)) 100% / 200% var(--p, 0.2em);
+          /* delay the text color transition using transition delay on color */
+          transition:
+            background-position 0.3s ease,
+            color 0.2s 0.3s ease;
+        }
+
+        .liquid:hover {
+          --p: 100%;
+          --t: 0.05s;
+          color: #fff; /* text turns white after the delay */
+        }
+      `}</style>
     </section>
   );
 }
