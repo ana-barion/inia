@@ -2,8 +2,6 @@
 import { useState } from "react";
 
 export default function ContactPage() {
-  // We no longer need conditional rendering for the form fields.
-  // All fields are now displayed by default.
   const [role, setRole] = useState("");
 
   return (
