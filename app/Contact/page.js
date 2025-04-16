@@ -2,6 +2,8 @@
 import { useState } from "react";
 
 export default function ContactPage() {
+  // We no longer need conditional rendering for the form fields.
+  // All fields are now displayed by default.
   const [role, setRole] = useState("");
 
   return (
@@ -139,12 +141,12 @@ export default function ContactPage() {
               </label>
             </div>
 
-            {/* Send Message Button with liquid fill animation */}
+            {/* Send Message Button */}
             <button
               type="submit"
-              className="liquid-fill bg-black text-white px-4 py-2 rounded w-full hover:bg-gray-800"
+              className="bg-black text-white px-4 py-2 rounded w-full hover:bg-gray-800"
             >
-              <span>Send Message</span>
+              Send Message
             </button>
           </form>
         </div>
@@ -182,33 +184,6 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
-
-      {/* Scoped CSS for the liquid fill animation on the send button */}
-      <style jsx>{`
-        .liquid-fill {
-          position: relative;
-          overflow: hidden;
-          transition: color 0.5s ease;
-        }
-        .liquid-fill::before {
-          content: "";
-          position: absolute;
-          left: 0;
-          bottom: 0;
-          width: 100%;
-          height: 0;
-          background-color: #4a90e2; /* Fill color */
-          transition: height 0.5s ease;
-          z-index: -1;
-        }
-        .liquid-fill:hover::before {
-          height: 100%;
-        }
-        .liquid-fill:hover span {
-          color: #ffffff;
-          transition: color 0.5s ease;
-        }
-      `}</style>
     </section>
   );
 }
