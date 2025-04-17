@@ -177,7 +177,7 @@ export default function ContactPage() {
         </div>
       </div>
 
-      {/* Custom CSS for Liquid Button Animation */}
+      {/* CSS for Liquid Button Animation */}
       <style jsx>{`
         .btn {
           position: relative;
@@ -195,6 +195,7 @@ export default function ContactPage() {
         }
 
         .liquid {
+          /* Create background gradient off screen for button */
           background: linear-gradient(#646cff 0 0) no-repeat
             calc(200% - var(--p, 0%)) 100% / 200% var(--p, 0.2em);
           /* delay the text color transition using transition delay on color */
@@ -204,9 +205,10 @@ export default function ContactPage() {
         }
 
         .liquid:hover {
+          /* Change variable for gradient to fill button and change text color */
           --p: 100%;
           --t: 0.05s;
-          color: #fff; /* text turns white after the delay */
+          color: #fff;
         }
       `}</style>
     </section>
