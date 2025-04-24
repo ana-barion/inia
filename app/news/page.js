@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 
 import Image from "next/image";
+import Link from "next/link";
 
 const newsData = [
   {
@@ -29,6 +30,58 @@ const newsData = [
     title: "Test data",
     description: "This is test data...",
     date: "March 1, 2025",
+    featured: false,
+    imageURL: "/next.svg",
+  },
+  {
+    id: 4,
+    type: "Research",
+    title: "Study Highlights IL-17's Role in Psoriasis Inflammation",
+    description:
+      "Recent findings underscore the pivotal role of interleukin-17 in promoting inflammation and keratinocyte activation in psoriasis, reinforcing its status as a key therapeutic target.",
+    date: "March 10, 2025",
+    featured: false,
+    imageURL: "/next.svg",
+  },
+  {
+    id: 5,
+    type: "Research",
+    title: "Ultrasound Therapy Shows Promise in Plaque Psoriasis Treatment",
+    description:
+      "Low-frequency ultrasound therapy has been found to aid in the treatment of chronic plaque psoriasis, offering a non-invasive alternative to traditional methods.",
+    date: "March 5, 2025",
+    featured: false,
+    imageURL: "/next.svg",
+  },
+  {
+    id: 6,
+    type: "Press Release",
+    title:
+      "Advancements in High-Frequency Ultrasound for Psoriatic Skin Assessment",
+    description:
+      "High-frequency ultrasonography emerges as a valuable tool for non-invasive evaluation of psoriatic skin, enabling detailed assessment of inflammation and skin thickness.",
+    date: "February 25, 2025",
+    featured: false,
+    imageURL: "/next.svg",
+  },
+  {
+    id: 7,
+    type: "Research",
+    title: "IL-23 Identified as a Key Driver in Psoriasis Pathogenesis",
+    description:
+      "New research identifies interleukin-23 as a central cytokine in the development of psoriasis, paving the way for targeted therapies aimed at this specific pathway.",
+    date: "February 15, 2025",
+    featured: false,
+    imageURL: "/next.svg",
+  },
+  {
+    id: 8,
+    type: "Research",
+    title:
+      "Ultrasound Monitoring Enhances Evaluation of Biologic Treatments in Psoriasis",
+    description:
+      "Combining clinical, dermoscopic, and ultrasonic assessments provides a comprehensive approach to monitor the efficacy of biologic treatments in moderate-to-severe plaque psoriasis.",
+    date: "February 5, 2025",
     featured: false,
     imageURL: "/next.svg",
   },
@@ -62,6 +115,36 @@ export default function News() {
 
   return (
     <div className="font-sans bg-gray-50 text-gray-900">
+      <header className="bg-white shadow-md py-4">
+        <div className="container mx-auto px-4 flex justify-between items-center">
+          <div className="flex items-center space-x-4">
+            <Image src="/logo.svg" alt="INIA Logo" width={100} height={40} />
+            <nav className="hidden md:flex space-x-6 text-sm">
+              <Link href="/" className="text-gray-700 hover:text-black">
+                Home
+              </Link>
+              <Link href="/science" className="text-gray-700 hover:text-black">
+                Science
+              </Link>
+              <Link href="/team" className="text-gray-700 hover:text-black">
+                Team
+              </Link>
+              <Link href="/news" className="text-gray-700 hover:text-black">
+                News
+              </Link>
+              <Link href="/contact" className="text-gray-700 hover:text-black">
+                Contact
+              </Link>
+            </nav>
+          </div>
+          <a
+            href="/join"
+            className="bg-gray-900 text-white text-sm px-4 py-2 rounded-md hover:bg-black"
+          >
+            Join Our Study
+          </a>
+        </div>
+      </header>
       <div className="container mx-auto px-4 py-20">
         <h1 className="text-5xl mb-8">Latest News & Updates</h1>
         <div className="flex justify-between items-center mb-6">
@@ -159,6 +242,20 @@ export default function News() {
           >
             <p className="w-4 h-4">←</p>
           </button>
+
+          {[...Array(totalPages)].map((_, idx) => (
+            <button
+              key={idx + 1}
+              onClick={() => handlePageChange(idx + 1)}
+              className={`px-3 py-1 border rounded text-sm ${
+                currentPage === idx + 1
+                  ? "bg-gray-900 text-white"
+                  : "bg-white text-gray-800"
+              }`}
+            >
+              {idx + 1}
+            </button>
+          ))}
 
           <button
             onClick={() => handlePageChange(currentPage + 1)}

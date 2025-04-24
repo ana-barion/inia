@@ -1,233 +1,216 @@
-import Link from "next/link"; // Keep Link for potential navigation
+"use client";
+import { useState } from "react";
 
-export default function Home() {
+export default function ContactPage() {
+  const [role, setRole] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const data = {
+      role: formData.get("role"),
+      firstName: formData.get("firstName"),
+      lastName: formData.get("lastName"),
+      email: formData.get("email"),
+      phone: formData.get("phone"),
+      message: formData.get("message"),
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await res.json();
+      if (res.ok) {
+        alert("✅ Message sent!");
+      } else {
+        alert("❌ Failed to send: " + result.error);
+      }
+    } catch (err) {
+      console.error("Error submitting form:", err);
+      alert("❌ Something went wrong.");
+    }
+  };
+
   return (
-    <div className="flex flex-col min-h-screen bg-white text-gray-800">
-      {/* Header */}
-      <header className="border-b sticky top-0 bg-white z-10">
-        <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-          <div className="font-bold text-lg">[LOGO]</div>
-          <nav className="hidden md:flex items-center space-x-6">
-            <Link href="/" className="hover:text-blue-600">
-              Home
-            </Link>
-            <Link href="/science" className="hover:text-blue-600">
-              Science
-            </Link>
-            <Link href="/team" className="hover:text-blue-600">
-              Team
-            </Link>
-            <Link href="/news" className="hover:text-blue-600">
-              News
-            </Link>
-            <Link href="/contact" className="hover:text-blue-600">
-              Contact
-            </Link>
-          </nav>
-          <div>
-            <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors text-sm">
-              Join Our Study
+    <section className="container mx-auto px-4 py-16">
+      {/* Header Section with Custom Background */}
+      <div className="bg-[#f9fafb] px-4 py-12 mb-8 rounded-lg">
+        <div className="text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-2">
+            Contact INIA BioSciences
+          </h1>
+          <p className="text-lg text-gray-600">How can we help you today</p>
+        </div>
+      </div>
+      {/* Two Column Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Left Side: Full Contact Form */}
+        <div>
+          <form
+            onSubmit={handleSubmit}
+            className="bg-white p-6 rounded-lg border border-gray-300 space-y-4"
+          >
+            {/* Role Selection */}
+            <div>
+              <label htmlFor="role" className="block text-lg font-medium mb-1">
+                I am a...
+              </label>
+              <select
+                id="role"
+                name="role"
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+                className="w-full border rounded p-2"
+                required
+              >
+                <option value="">-- Select --</option>
+                <option value="patient">Patient</option>
+                <option value="investor">Investor</option>
+                <option value="talent">Talent</option>
+                <option value="dermatologist">Dermatologist</option>
+              </select>
+            </div>
+
+            {/* First Name and Last Name */}
+            <div className="flex space-x-4">
+              <div className="w-1/2">
+                <label
+                  htmlFor="firstName"
+                  className="block text-lg font-medium mb-1"
+                >
+                  First Name
+                </label>
+                <input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  className="w-full border rounded p-2"
+                  required
+                />
+              </div>
+              <div className="w-1/2">
+                <label
+                  htmlFor="lastName"
+                  className="block text-lg font-medium mb-1"
+                >
+                  Last Name
+                </label>
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  className="w-full border rounded p-2"
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Email Address */}
+            <div>
+              <label htmlFor="email" className="block text-lg font-medium mb-1">
+                Email Address
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                className="w-full border rounded p-2"
+                required
+              />
+            </div>
+
+            {/* Phone Number */}
+            <div>
+              <label htmlFor="phone" className="block text-lg font-medium mb-1">
+                Phone Number
+              </label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                className="w-full border rounded p-2"
+                required
+              />
+            </div>
+
+            {/* Message Box */}
+            <div>
+              <label
+                htmlFor="message"
+                className="block text-lg font-medium mb-1"
+              >
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                className="w-full border rounded p-2"
+                required
+              ></textarea>
+            </div>
+
+            {/* Terms Checkbox */}
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                id="terms"
+                name="terms"
+                className="mr-2"
+                required
+              />
+              <label htmlFor="terms" className="text-sm">
+                I agree to the privacy policy and terms of service
+              </label>
+            </div>
+
+            {/* Animated Liquid Button */}
+            <button
+              type="submit"
+              className="relative px-6 py-3 text-lg font-semibold text-white bg-blue-600 border border-blue-600 rounded-lg hover:bg-blue-700 hover:border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 w-full"
+            >
+              <span>Send Message</span>
             </button>
-            {/* Add a Mobile Menu Button Here if needed */}
+          </form>
+        </div>
+
+        {/* Right Side: Info Boxes */}
+        <div className="space-y-8">
+          <div className="bg-[#f9fafb] p-6 rounded-lg">
+            <h2 className="text-xl font-semibold mb-4">Contact Information</h2>
+            <p>Address: [Placeholder Address]</p>
+            <p>Phone: [Placeholder Number]</p>
+            <p>Email: [Placeholder Email]</p>
+          </div>
+
+          <div className="bg-[#f9fafb] p-6 rounded-lg">
+            <h2 className="text-xl font-semibold mb-4">Our Location</h2>
+            <div className="overflow-hidden rounded-lg">
+              <iframe
+                title="map"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2949.6410327003493!2d-71.08493008455015!3d42.34557397918565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e379e65054ea67%3A0x7d20291b3fc1b011!2s123%20Innovation%20Dr%2C%20Boston%2C%20MA%2002118%2C%20USA!5e0!3m2!1sen!2s!4v1630875018359!5m2!1sen!2s"
+                width="100%"
+                height="200"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+              />
+            </div>
+          </div>
+
+          <div className="bg-[#f9fafb] p-6 rounded-lg">
+            <h2 className="text-xl font-semibold mb-4">Office Hours</h2>
+            <p>Monday to Friday: 9 AM - 5 PM</p>
           </div>
         </div>
-      </header>
-
-      {/* Main Content */}
-      <main className="flex-grow">
-        {/* Hero Section */}
-        <section className="container mx-auto px-4 py-16 md:py-24 text-center md:text-left">
-          <div className="max-w-2xl">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Harnessing ultrasound bioelectronics for the future of healthcare
-            </h1>
-            <p className="text-lg text-gray-600 mb-8">
-              Revolutionizing psoriasis treatment through innovative
-              bioelectronic medicine
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
-              <button className="bg-gray-800 text-white px-6 py-3 rounded hover:bg-gray-900 transition-colors">
-                Learn About Our Treatment
-              </button>
-              <button className="border border-gray-400 text-gray-700 px-6 py-3 rounded hover:bg-gray-100 transition-colors">
-                For Healthcare Providers
-              </button>
-            </div>
-          </div>
-        </section>
-
-        {/* Trusted By Section */}
-        <section className="bg-gray-50 py-12">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-sm uppercase text-gray-500 font-semibold mb-8">
-              Trusted by Leading Institutions
-            </h2>
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-              <div className="text-gray-400">[Logo 1]</div>
-              <div className="text-gray-400">[Logo 2]</div>
-              <div className="text-gray-400">[Logo 3]</div>
-              <div className="text-gray-400">[Logo 4]</div>
-              <div className="text-gray-400">[Logo 5]</div>
-            </div>
-          </div>
-        </section>
-
-        {/* Why Choose INIA Section */}
-        <section className="container mx-auto px-4 py-16 md:py-24">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Why Choose INIA
-          </h2>
-          <div className="grid md:grid-cols-3 gap-10">
-            <div className="text-center">
-              <div className="text-4xl mb-4">[ICON]</div> {/* Placeholder */}
-              <h3 className="text-xl font-semibold mb-2">
-                Non-Invasive Treatment
-              </h3>
-              <p className="text-gray-600">
-                Advanced ultrasound technology for gentle, effective treatment.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl mb-4">[ICON]</div> {/* Placeholder */}
-              <h3 className="text-xl font-semibold mb-2">At-Home Use</h3>
-              <p className="text-gray-600">
-                Convenient treatment in the comfort of your own home.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl mb-4">[ICON]</div> {/* Placeholder */}
-              <h3 className="text-xl font-semibold mb-2">Proven Results</h3>
-              <p className="text-gray-600">
-                Clinically validated outcomes for lasting relief.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* 3 Minutes a Day Section */}
-        <section className="bg-gray-50 py-16 md:py-24">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">
-              3 Minutes a Day
-            </h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
-              <div className="text-center">
-                <div className="text-4xl mb-4">[ICON]</div> {/* Placeholder */}
-                <h4 className="font-semibold">Put on vest</h4>
-                <p className="text-sm text-gray-500">Quick and easy to wear</p>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl mb-4">[ICON]</div> {/* Placeholder */}
-                <h4 className="font-semibold">Use App</h4>
-                <p className="text-sm text-gray-500">
-                  Simple one-touch control
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl mb-4">[ICON]</div> {/* Placeholder */}
-                <h4 className="font-semibold">Relax</h4>
-                <p className="text-sm text-gray-500">
-                  Gentle treatment session
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl mb-4">[ICON]</div> {/* Placeholder */}
-                <h4 className="font-semibold">Recharge</h4>
-                <p className="text-sm text-gray-500">Ready for next use</p>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-gray-800 text-gray-300 py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            {/* Column 1: Logo & Tagline */}
-            <div>
-              <div className="font-bold text-lg text-white mb-2">[LOGO]</div>
-              <p className="text-sm">
-                Innovating healthcare through bioelectronic medicine.
-              </p>
-            </div>
-            {/* Column 2: Quick Links */}
-            <div>
-              <h4 className="font-semibold text-white mb-3">Quick Links</h4>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <Link href="/" className="hover:text-white">
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/science" className="hover:text-white">
-                    Science
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/team" className="hover:text-white">
-                    Team
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/news" className="hover:text-white">
-                    News
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/contact" className="hover:text-white">
-                    Contact
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            {/* Column 3: Contact */}
-            <div>
-              <h4 className="font-semibold text-white mb-3">Contact</h4>
-              <address className="not-italic text-sm space-y-2">
-                <p>contact@iniabiosciences.com</p>
-                <p>+1 (555) 123-4567</p>
-                <p>123 Innovation Drive, Boston, MA</p>
-              </address>
-            </div>
-            {/* Column 4: Follow Us */}
-            <div>
-              <h4 className="font-semibold text-white mb-3">Follow Us</h4>
-              <div className="flex space-x-4">
-                {/* Replace with actual icons */}
-                <a
-                  href="https://twitter.com"
-                  aria-label="Twitter"
-                  className="hover:text-white"
-                >
-                  [T]
-                </a>
-                <a
-                  href="https://linkedin.com"
-                  aria-label="LinkedIn"
-                  className="hover:text-white"
-                >
-                  [in]
-                </a>
-                <a
-                  href="https://facebook.com"
-                  aria-label="Facebook"
-                  className="hover:text-white"
-                >
-                  [f]
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="border-t border-gray-700 pt-6 text-center text-sm text-gray-500">
-            <p>
-              © {new Date().getFullYear()} INIA Biosciences. All rights
-              reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
-    </div>
+      </div>
+    </section>
   );
 }
