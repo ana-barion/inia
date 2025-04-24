@@ -4,6 +4,40 @@ import { useState } from "react";
 export default function ContactPage() {
   const [role, setRole] = useState("");
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const data = {
+      role: formData.get("role"),
+      firstName: formData.get("firstName"),
+      lastName: formData.get("lastName"),
+      email: formData.get("email"),
+      phone: formData.get("phone"),
+      message: formData.get("message"),
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await res.json();
+      if (res.ok) {
+        alert("✅ Message sent!");
+      } else {
+        alert("❌ Failed to send: " + result.error);
+      }
+    } catch (err) {
+      console.error("Error submitting form:", err);
+      alert("❌ Something went wrong.");
+    }
+  };
+
   return (
     <section className="container mx-auto px-4 py-16">
       {/* Header Section with Custom Background */}
@@ -15,14 +49,12 @@ export default function ContactPage() {
           <p className="text-lg text-gray-600">How can we help you today</p>
         </div>
       </div>
-
       {/* Two Column Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Left Side: Full Contact Form */}
         <div>
           <form
-            method="POST"
-            action="/api/submit"
+            onSubmit={handleSubmit}
             className="bg-white p-6 rounded-lg border border-gray-300 space-y-4"
           >
             {/* Role Selection */}
@@ -140,7 +172,10 @@ export default function ContactPage() {
             </div>
 
             {/* Animated Liquid Button */}
-            <button type="submit" className="btn liquid w-full">
+            <button
+              type="submit"
+              className="relative px-6 py-3 text-lg font-semibold text-white bg-blue-600 border border-blue-600 rounded-lg hover:bg-blue-700 hover:border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 w-full"
+            >
               <span>Send Message</span>
             </button>
           </form>
@@ -176,41 +211,6 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
-
-      {/* CSS for Liquid Button Animation */}
-      <style jsx>{`
-        .btn {
-          position: relative;
-          padding: 1rem 2rem;
-          font-size: 1rem;
-          font-weight: 600;
-          color: #000; /* initially black text */
-          background: none;
-          border: 2px solid #646cff;
-          border-radius: 8px;
-          cursor: pointer;
-          overflow: hidden;
-          /* transition for the text color */
-          transition: color 0.1s ease;
-        }
-
-        .liquid {
-          /* Create background gradient off screen for button */
-          background: linear-gradient(#646cff 0 0) no-repeat
-            calc(200% - var(--p, 0%)) 100% / 200% var(--p, 0.2em);
-          /* delay the text color transition using transition delay on color */
-          transition:
-            background-position 0.3s ease,
-            color 0.2s 0.3s ease;
-        }
-
-        .liquid:hover {
-          /* Change variable for gradient to fill button and change text color */
-          --p: 100%;
-          --t: 0.05s;
-          color: #fff;
-        }
-      `}</style>
     </section>
   );
 }
