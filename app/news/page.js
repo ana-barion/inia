@@ -4,6 +4,9 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+import Footer from "../../components/layout/Footer";
+import Header from "../../components/layout/Header";
+
 const newsData = [
   {
     id: 1,
@@ -114,179 +117,155 @@ export default function News() {
   const currentNews = newsItems[currentPage - 1];
 
   return (
-    <div className="font-sans bg-gray-50 text-gray-900">
-      <header className="bg-white shadow-md py-4">
-        <div className="container mx-auto px-4 flex justify-between items-center">
-          <div className="flex items-center space-x-4">
-            <Image src="/logo.svg" alt="INIA Logo" width={100} height={40} />
-            <nav className="hidden md:flex space-x-6 text-sm">
-              <Link href="/" className="text-gray-700 hover:text-black">
-                Home
-              </Link>
-              <Link href="/science" className="text-gray-700 hover:text-black">
-                Science
-              </Link>
-              <Link href="/team" className="text-gray-700 hover:text-black">
-                Team
-              </Link>
-              <Link href="/news" className="text-gray-700 hover:text-black">
-                News
-              </Link>
-              <Link href="/contact" className="text-gray-700 hover:text-black">
-                Contact
-              </Link>
-            </nav>
+    <div className="flex flex-col min-h-screen bg-white text-gray-800">
+      <Header />
+      <main className="flex-grow">
+        <div className="container mx-auto px-4 py-20">
+          <h1 className="text-5xl mb-8">Latest News & Updates</h1>
+          <div className="flex justify-between items-center mb-6">
+            <input
+              type="text"
+              placeholder="Search news..."
+              className="w-full md:w-1/3 p-3 border rounded-md border-gray-300 placeholder-black placeholder-font-semibold"
+            />
+            <div className="flex space-x-2">
+              {filters.map((filter) => (
+                <button
+                  key={filter}
+                  onClick={() => handleFilterClick(filter)}
+                  className={`px-4 py-2 rounded-md hover:cursor-pointer ${
+                    activeFilter === filter
+                      ? "bg-gray-900 text-white"
+                      : "bg-white border"
+                  }`}
+                >
+                  {filter}
+                </button>
+              ))}
+            </div>
           </div>
-          <a
-            href="/join"
-            className="bg-gray-900 text-white text-sm px-4 py-2 rounded-md hover:bg-black"
-          >
-            Join Our Study
-          </a>
         </div>
-      </header>
-      <div className="container mx-auto px-4 py-20">
-        <h1 className="text-5xl mb-8">Latest News & Updates</h1>
-        <div className="flex justify-between items-center mb-6">
-          <input
-            type="text"
-            placeholder="Search news..."
-            className="w-full md:w-1/3 p-3 border rounded-md border-gray-300 placeholder-black placeholder-font-semibold"
-          />
-          <div className="flex space-x-2">
-            {filters.map((filter) => (
+        <div className="container mx-auto px-4 py-20 border-b border-gray-300">
+          {newsData
+            .filter((news) => news.featured)
+            .map((news) => (
+              <div
+                key={news.id}
+                className="bg-white p-10 rounded-lg shadow mb-6 border-gray-900"
+              >
+                <span className="bg-gray-900 text-white px-2 py-1 rounded text-xs">
+                  Featured
+                </span>
+                <h2 className="text-lg font-semibold mt-2">{news.title}</h2>
+                <p className="text-sm text-gray-600 mt-1">{news.description}</p>
+                <div className="flex justify-between items-center mt-4">
+                  <div className="flex items-center">
+                    <span className="text-xs text-gray-900 mr-6">
+                      {news.date}
+                    </span>
+                    <div className="text-xs text-gray-900 border rounded-md px-3 py-1">
+                      {" "}
+                      {news.type}{" "}
+                    </div>
+                  </div>
+                  <button className="text-gray-900 text-sm hover:cursor-pointer">
+                    Read More →
+                  </button>
+                </div>
+              </div>
+            ))}
+        </div>
+
+        <div className="container mx-auto px-4 py-20 flex flex-col justify-center items-center">
+          <div className="w-full h-[400px] max-w-md rounded-lg border border-gray-300 bg-white overflow-hidden shadow-sm">
+            <div className="bg-gray-200 h-48 flex items-center justify-center text-gray-500 text-sm">
+              <Image
+                src={currentNews.imageURL}
+                alt="INIA news page"
+                width={500}
+                height={200}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            <div className="p-4">
+              <div className="flex items-center gap-2 mb-4">
+                <span className="bg-gray-200 text-gray-600 text-xs px-3 py-1 rounded-full">
+                  {currentNews.type}
+                </span>
+                <span className="text-sm text-gray-500">
+                  {currentNews.date}
+                </span>
+              </div>
+
+              <h3 className="font-medium text-sm text-gray-900 mb-2">
+                {currentNews.title}
+              </h3>
+              <p className="text-sm text-gray-600 mb-8">
+                {currentNews.description}
+              </p>
+
+              <button className="text-gray-900 text-sm hover:cursor-pointer">
+                Read More →
+              </button>
+            </div>
+          </div>
+
+          <div className="flex gap-2 items-center mt-8">
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+              className="px-3 py-2 border rounded disabled:opacity-50 hover:cursor-pointer"
+            >
+              <p className="w-4 h-4">←</p>
+            </button>
+
+            {[...Array(totalPages)].map((_, idx) => (
               <button
-                key={filter}
-                onClick={() => handleFilterClick(filter)}
-                className={`px-4 py-2 rounded-md hover:cursor-pointer ${
-                  activeFilter === filter
+                key={idx + 1}
+                onClick={() => handlePageChange(idx + 1)}
+                className={`px-3 py-1 border rounded text-sm ${
+                  currentPage === idx + 1
                     ? "bg-gray-900 text-white"
-                    : "bg-white border"
+                    : "bg-white text-gray-800"
                 }`}
               >
-                {filter}
+                {idx + 1}
               </button>
             ))}
-          </div>
-        </div>
-      </div>
-      <div className="container mx-auto px-4 py-20 border-b border-gray-300">
-        {newsData
-          .filter((news) => news.featured)
-          .map((news) => (
-            <div
-              key={news.id}
-              className="bg-white p-10 rounded-lg shadow mb-6 border-gray-900"
-            >
-              <span className="bg-gray-900 text-white px-2 py-1 rounded text-xs">
-                Featured
-              </span>
-              <h2 className="text-lg font-semibold mt-2">{news.title}</h2>
-              <p className="text-sm text-gray-600 mt-1">{news.description}</p>
-              <div className="flex justify-between items-center mt-4">
-                <div className="flex items-center">
-                  <span className="text-xs text-gray-900 mr-6">
-                    {news.date}
-                  </span>
-                  <div className="text-xs text-gray-900 border rounded-md px-3 py-1">
-                    {" "}
-                    {news.type}{" "}
-                  </div>
-                </div>
-                <button className="text-gray-900 text-sm hover:cursor-pointer">
-                  Read More →
-                </button>
-              </div>
-            </div>
-          ))}
-      </div>
 
-      <div className="container mx-auto px-4 py-20 flex flex-col justify-center items-center border-b border-gray-300">
-        <div className="w-full h-[400px] max-w-md rounded-lg border border-gray-300 bg-white overflow-hidden shadow-sm">
-          <div className="bg-gray-200 h-48 flex items-center justify-center text-gray-500 text-sm">
-            <Image
-              src={currentNews.imageURL}
-              alt="INIA news page"
-              width={500}
-              height={200}
-              className="w-full h-full object-cover"
-            />
-          </div>
-
-          <div className="p-4">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="bg-gray-200 text-gray-600 text-xs px-3 py-1 rounded-full">
-                {currentNews.type}
-              </span>
-              <span className="text-sm text-gray-500">{currentNews.date}</span>
-            </div>
-
-            <h3 className="font-medium text-sm text-gray-900 mb-2">
-              {currentNews.title}
-            </h3>
-            <p className="text-sm text-gray-600 mb-8">
-              {currentNews.description}
-            </p>
-
-            <button className="text-gray-900 text-sm hover:cursor-pointer">
-              Read More →
-            </button>
-          </div>
-        </div>
-
-        <div className="flex gap-2 items-center mt-8">
-          <button
-            onClick={() => handlePageChange(currentPage - 1)}
-            disabled={currentPage === 1}
-            className="px-3 py-2 border rounded disabled:opacity-50 hover:cursor-pointer"
-          >
-            <p className="w-4 h-4">←</p>
-          </button>
-
-          {[...Array(totalPages)].map((_, idx) => (
             <button
-              key={idx + 1}
-              onClick={() => handlePageChange(idx + 1)}
-              className={`px-3 py-1 border rounded text-sm ${
-                currentPage === idx + 1
-                  ? "bg-gray-900 text-white"
-                  : "bg-white text-gray-800"
-              }`}
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className="px-3 py-2 border rounded disabled:opacity-50 hover:cursor-pointer"
             >
-              {idx + 1}
+              <p className="w-4 h-4">→</p>
             </button>
-          ))}
-
-          <button
-            onClick={() => handlePageChange(currentPage + 1)}
-            disabled={currentPage === totalPages}
-            className="px-3 py-2 border rounded disabled:opacity-50 hover:cursor-pointer"
-          >
-            <p className="w-4 h-4">→</p>
-          </button>
+          </div>
         </div>
-      </div>
 
-      <div className="container mx-auto px-4 py-20 flex flex-col justify-center items-center border-b border-gray-300">
-        <h3 className="text-xl font-semibold">
-          Stay Updated with INIA Biosciences
-        </h3>
-        <p className="text-sm text-gray-600 mt-2">
-          Subscribe to our newsletter for the latest updates and breakthroughs
-        </p>
-        <div className="flex justify-center mt-4">
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
-            className="p-2  border rounded-md mr-2"
-          />
-          <button className="bg-gray-900 text-white px-4 rounded-md">
-            Subscribe
-          </button>
+        <div className="container mx-auto px-4 py-20 flex flex-col justify-center items-center">
+          <h3 className="text-xl font-semibold">
+            Stay Updated with INIA Biosciences
+          </h3>
+          <p className="text-sm text-gray-600 mt-2">
+            Subscribe to our newsletter for the latest updates and breakthroughs
+          </p>
+          <div className="flex justify-center mt-4">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+              className="p-2  border rounded-md mr-2"
+            />
+            <button className="bg-gray-900 text-white px-4 rounded-md">
+              Subscribe
+            </button>
+          </div>
         </div>
-      </div>
+      </main>
+      <Footer />
     </div>
   );
 }

@@ -11,7 +11,7 @@ const leadership = [
     title: "Chief Executive Officer",
     image: "/DraganaTm.png",
     description:
-      "Leading INIA’s mission to transform bioelectronic medicine with over 15 years of experience in medical device innovation.",
+      "Leading INIA's mission to transform bioelectronic medicine with over 15 years of experience in medical device innovation.",
   },
   {
     name: "Shen Ning, M.D.",
@@ -48,10 +48,9 @@ const rndTeam = [
 
 export default function TeamPage() {
   return (
-    <>
+    <div className="flex flex-col min-h-screen bg-white text-gray-800">
       <Header />
-
-      <main className="bg-gray-50 text-gray-800">
+      <main className="flex-grow">
         {/* Intro Section */}
         <section className="text-center py-16 px-6">
           <h1 className="text-4xl font-semibold mb-4">Meet Our Team</h1>
@@ -128,6 +127,6 @@ export default function TeamPage() {
       </main>
 
       <Footer />
-    </>
+    </div>
   );
 }
