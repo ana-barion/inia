@@ -1,38 +1,12 @@
 import Link from "next/link"; // Keep Link for potential navigation
 
+import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
+
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-white text-gray-800">
-      {/* Header */}
-      <header className="border-b sticky top-0 bg-white z-10">
-        <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-          <div className="font-bold text-lg">[LOGO]</div>
-          <nav className="hidden md:flex items-center space-x-6">
-            <Link href="/" className="hover:text-blue-600">
-              Home
-            </Link>
-            <Link href="/science" className="hover:text-blue-600">
-              Science
-            </Link>
-            <Link href="/team" className="hover:text-blue-600">
-              Team
-            </Link>
-            <Link href="/news" className="hover:text-blue-600">
-              News
-            </Link>
-            <Link href="/contact" className="hover:text-blue-600">
-              Contact
-            </Link>
-          </nav>
-          <div>
-            <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors text-sm">
-              Join Our Study
-            </button>
-            {/* Add a Mobile Menu Button Here if needed */}
-          </div>
-        </div>
-      </header>
-
+      <Header />
       {/* Main Content */}
       <main className="flex-grow">
         {/* Hero Section */}
@@ -139,95 +113,7 @@ export default function Home() {
           </div>
         </section>
       </main>
-
-      {/* Footer */}
-      <footer className="bg-gray-800 text-gray-300 py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            {/* Column 1: Logo & Tagline */}
-            <div>
-              <div className="font-bold text-lg text-white mb-2">[LOGO]</div>
-              <p className="text-sm">
-                Innovating healthcare through bioelectronic medicine.
-              </p>
-            </div>
-            {/* Column 2: Quick Links */}
-            <div>
-              <h4 className="font-semibold text-white mb-3">Quick Links</h4>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <Link href="/" className="hover:text-white">
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/science" className="hover:text-white">
-                    Science
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/team" className="hover:text-white">
-                    Team
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/news" className="hover:text-white">
-                    News
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/contact" className="hover:text-white">
-                    Contact
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            {/* Column 3: Contact */}
-            <div>
-              <h4 className="font-semibold text-white mb-3">Contact</h4>
-              <address className="not-italic text-sm space-y-2">
-                <p>contact@iniabiosciences.com</p>
-                <p>+1 (555) 123-4567</p>
-                <p>123 Innovation Drive, Boston, MA</p>
-              </address>
-            </div>
-            {/* Column 4: Follow Us */}
-            <div>
-              <h4 className="font-semibold text-white mb-3">Follow Us</h4>
-              <div className="flex space-x-4">
-                {/* Replace with actual icons */}
-                <a
-                  href="https://twitter.com"
-                  aria-label="Twitter"
-                  className="hover:text-white"
-                >
-                  [T]
-                </a>
-                <a
-                  href="https://linkedin.com"
-                  aria-label="LinkedIn"
-                  className="hover:text-white"
-                >
-                  [in]
-                </a>
-                <a
-                  href="https://facebook.com"
-                  aria-label="Facebook"
-                  className="hover:text-white"
-                >
-                  [f]
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="border-t border-gray-700 pt-6 text-center text-sm text-gray-500">
-            <p>
-              © {new Date().getFullYear()} INIA Biosciences. All rights
-              reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
