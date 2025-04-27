@@ -1,4 +1,4 @@
-import Link from "next/link"; // Keep Link for potential navigation
+import Image from "next/image";
 
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
@@ -84,31 +84,41 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-center mb-12">
               3 Minutes a Day
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
-              <div className="text-center">
-                <div className="text-4xl mb-4">[ICON]</div> {/* Placeholder */}
-                <h4 className="font-semibold">Put on vest</h4>
-                <p className="text-sm text-gray-500">Quick and easy to wear</p>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl mb-4">[ICON]</div> {/* Placeholder */}
-                <h4 className="font-semibold">Use App</h4>
-                <p className="text-sm text-gray-500">
-                  Simple one-touch control
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl mb-4">[ICON]</div> {/* Placeholder */}
-                <h4 className="font-semibold">Relax</h4>
-                <p className="text-sm text-gray-500">
-                  Gentle treatment session
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl mb-4">[ICON]</div> {/* Placeholder */}
-                <h4 className="font-semibold">Recharge</h4>
-                <p className="text-sm text-gray-500">Ready for next use</p>
-              </div>
+            <div className="flex justify-center items-center flex-wrap gap-6">
+              {[
+                { img: "vest.svg", label: "Wear the Vest" },
+                { img: "phone.svg", label: "Launch the App" },
+                { img: "couch.svg", label: "Relax for 3 Minutes" },
+                { img: "battery.svg", label: "Recharge and Repeat" },
+              ].map((step, index, arr) => (
+                <div key={index} className="flex items-center gap-0 sm:gap-4">
+                  <div className="flex flex-col items-center transition-transform duration-500 ease-in-out hover:scale-105">
+                    <div className="w-20 h-20 border-2 border-[#355D84] rounded-full bg-white flex items-center justify-center p-3">
+                      <Image
+                        src={`/${step.img}`}
+                        alt={step.label}
+                        width={40}
+                        height={40}
+                        style={{ color: "#355D84" }}
+                      />
+                    </div>
+                    <p className="text-lg mt-2 text-center text-[#1E293B]">
+                      {step.label}
+                    </p>
+                  </div>
+                  {index < arr.length - 1 && (
+                    <div className="flex items-center justify-center">
+                      <Image
+                        src="/arrow.svg"
+                        alt="arrow"
+                        width={32}
+                        height={32}
+                        style={{ color: "#355D84" }}
+                      />
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </section>

@@ -121,9 +121,9 @@ export default function SciencePage() {
             </p>
           </section>
 
-          {/* Ultrasound Technology */}
-          <section className="w-full py-12">
-            <div className="max-w-5xl mx-auto grid sm:grid-cols-2 gap-6 items-center px-6">
+          {/* Ultrasound Technology through Steps Timeline grouped */}
+          <section className="w-full bg-gray-50">
+            <div className="max-w-5xl mx-auto grid sm:grid-cols-2 gap-6 items-center px-6 py-12">
               <div>
                 <h2 className="text-2xl font-semibold mb-4 text-[#1E293B]">
                   Ultrasound Technology
@@ -150,11 +150,7 @@ export default function SciencePage() {
                 />
               </div>
             </div>
-          </section>
-
-          {/* INIAcore Process */}
-          <section className="w-full px-6 sm:px-10 py-16">
-            <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-center rounded-xl shadow-lg p-6 bg-white">
+            <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-center rounded-xl shadow-lg p-6 bg-white px-6 sm:px-10 py-16">
               <div className="space-y-6">
                 {[...Array(6)].map((_, index) => (
                   <div key={index} className="flex items-center gap-4">
@@ -206,170 +202,163 @@ export default function SciencePage() {
                 </div>
               </div>
             </div>
-          </section>
-
-          {/* 3 Minutes Section */}
-          <section className="w-full py-16 text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#1E293B] mb-4">
-              3 Minutes a Day
-            </h2>
-            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-              Suppress inflammation and reduce psoriasis
-            </p>
-            <p className="text-gray-700 mt-4 max-w-3xl mx-auto px-4">
-              Patients want safe, effective, and non-invasive relief. INIAcore
-              was designed with them in mind.
-            </p>
-          </section>
-
-          {/* Steps Timeline */}
-          <section className="py-12">
-            <div className="flex justify-center items-center flex-wrap gap-6">
-              {[
-                { img: "vest.svg", label: "Wear the Vest" },
-                { img: "phone.svg", label: "Launch the App" },
-                { img: "couch.svg", label: "Relax for 3 Minutes" },
-                { img: "battery.svg", label: "Recharge and Repeat" },
-              ].map((step, index, arr) => (
-                <div key={index} className="flex items-center gap-4">
-                  <div className="flex flex-col items-center transition-transform duration-500 ease-in-out hover:scale-105">
-                    <div className="w-20 h-20 border-2 border-[#355D84] rounded-full bg-white flex items-center justify-center p-3">
-                      <Image
-                        src={`/${step.img}`}
-                        alt={step.label}
-                        width={40}
-                        height={40}
-                      />
-                    </div>
-                    <p className="text-lg mt-2 text-center text-[#1E293B]">
-                      {step.label}
-                    </p>
-                  </div>
-                  {index < arr.length - 1 && (
-                    <Image
-                      src="/arrow.svg"
-                      alt="arrow"
-                      width={24}
-                      height={24}
-                    />
-                  )}
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Why It Matters */}
-          <section className="w-full my-16 px-4 flex justify-center">
-            <div className="bg-white border border-slate-300 rounded-xl shadow-md max-w-3xl p-8 w-full text-center">
-              <h2 className="text-2xl font-semibold mb-4 text-[#1E293B]">
-                Why It Matters
+            <div className="w-full py-16 text-center">
+              <h2 className="text-3xl sm:text-4xl font-bold text-[#1E293B] mb-4">
+                3 Minutes a Day
               </h2>
-              <p className="text-gray-700">
-                Over 8 million Americans suffer from psoriasis, many of whom
-                face challenges with conventional therapies — from high costs to
-                fear of injections. INIAcore fills a critical gap by offering a
-                convenient, at-home, non-invasive alternative with rapid action
-                and fewer side effects.
+              <p className="text-lg text-gray-700 max-w-2xl mx-auto">
+                Suppress inflammation and reduce psoriasis
+              </p>
+              <p className="text-gray-700 mt-4 max-w-3xl mx-auto px-4">
+                Patients want safe, effective, and non-invasive relief. INIAcore
+                was designed with them in mind.
               </p>
             </div>
-          </section>
-
-          {/* Inflammation Control */}
-          <section className="w-full mb-16 px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-2xl font-semibold mb-6 text-center text-[#1E293B]">
-                Inflammation Control
-              </h2>
-              <div className="grid md:grid-cols-3 gap-6 text-center">
+            <div className="py-12">
+              <div className="flex justify-center items-center flex-wrap gap-6">
                 {[
-                  {
-                    title: "Targeted Treatment",
-                    desc: "Precise delivery to affected areas",
-                  },
-                  {
-                    title: "Measured Response",
-                    desc: "Controlled inflammatory response",
-                  },
-                  {
-                    title: "Long-lasting Relief",
-                    desc: "Sustained therapeutic effects",
-                  },
-                ].map(({ title, desc }, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-white shadow-sm p-6 rounded-lg transition-transform duration-500 ease-in-out hover:scale-105"
-                  >
-                    <h3 className="font-semibold mb-2 text-[#1E293B]">
-                      {title}
-                    </h3>
-                    <p className="text-gray-600">{desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* Clinical Evidence */}
-          <section className="w-full mb-16 px-4">
-            <h2 className="text-2xl font-semibold mb-6 text-center text-[#1E293B]">
-              Clinical Evidence
-            </h2>
-            <div className="flex justify-center">
-              <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-6 text-center text-sm max-w-4xl">
-                {[
-                  {
-                    phase: "Phase I",
-                    label: "Completed",
-                    percent: 100,
-                    color: "bg-green-500",
-                  },
-                  {
-                    phase: "Phase II",
-                    label: "In Progress",
-                    percent: 60,
-                    color: "bg-yellow-400",
-                  },
-                  {
-                    phase: "Phase III",
-                    label: "In Preparation",
-                    percent: 30,
-                    color: "bg-blue-400",
-                  },
-                ].map(({ phase, label, percent, color }, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-white border p-4 rounded-lg flex flex-col items-center"
-                  >
-                    <h4 className="font-semibold mb-1 text-[#1E293B]">
-                      {phase}
-                    </h4>
-                    <span className="text-xs text-gray-500 mb-2">{label}</span>
-                    <div className="w-full h-2 bg-gray-200 rounded-full mb-2">
-                      <div
-                        className={`h-full rounded-full ${color}`}
-                        style={{ width: `${percent}%` }}
-                      ></div>
+                  { img: "vest.svg", label: "Wear the Vest" },
+                  { img: "phone.svg", label: "Launch the App" },
+                  { img: "couch.svg", label: "Relax for 3 Minutes" },
+                  { img: "battery.svg", label: "Recharge and Repeat" },
+                ].map((step, index, arr) => (
+                  <div key={index} className="flex items-center gap-4">
+                    <div className="flex flex-col items-center transition-transform duration-500 ease-in-out hover:scale-105">
+                      <div className="w-20 h-20 border-2 border-[#355D84] rounded-full bg-white flex items-center justify-center p-3">
+                        <Image
+                          src={`/${step.img}`}
+                          alt={step.label}
+                          width={40}
+                          height={40}
+                        />
+                      </div>
+                      <p className="text-lg mt-2 text-center text-[#1E293B]">
+                        {step.label}
+                      </p>
                     </div>
-                    <p className="text-gray-600 text-xs">
-                      {phase === "Phase I"
-                        ? "Safety and initial efficacy established"
-                        : phase === "Phase II"
-                          ? "Expanded patient trials ongoing"
-                          : "Large-scale trials in preparation"}
-                    </p>
+                    {index < arr.length - 1 && (
+                      <Image
+                        src="/arrow.svg"
+                        alt="arrow"
+                        width={32}
+                        height={32}
+                      />
+                    )}
                   </div>
                 ))}
               </div>
             </div>
           </section>
 
-          {/* Research Pipeline */}
-          <section className="w-full mb-20 px-4">
-            <h2 className="text-2xl font-semibold mb-4 text-center text-[#1E293B]">
-              Research Pipeline
-            </h2>
-            <div className="space-y-4 max-w-xl mx-auto">
-              <ResearchAccordion />
+          {/* Why It Matters through Research Pipeline grouped */}
+          <section className="w-full">
+            <div className="my-16 px-4 flex justify-center">
+              <div className="bg-white border border-slate-300 rounded-xl shadow-md max-w-3xl p-8 w-full text-center">
+                <h2 className="text-2xl font-semibold mb-4 text-[#1E293B]">
+                  Why It Matters
+                </h2>
+                <p className="text-gray-700">
+                  Over 8 million Americans suffer from psoriasis, many of whom
+                  face challenges with conventional therapies — from high costs
+                  to fear of injections. INIAcore fills a critical gap by
+                  offering a convenient, at-home, non-invasive alternative with
+                  rapid action and fewer side effects.
+                </p>
+              </div>
+            </div>
+            <div className="mb-16 px-4">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-2xl font-semibold mb-6 text-center text-[#1E293B]">
+                  Inflammation Control
+                </h2>
+                <div className="grid md:grid-cols-3 gap-6 text-center">
+                  {[
+                    {
+                      title: "Targeted Treatment",
+                      desc: "Precise delivery to affected areas",
+                    },
+                    {
+                      title: "Measured Response",
+                      desc: "Controlled inflammatory response",
+                    },
+                    {
+                      title: "Long-lasting Relief",
+                      desc: "Sustained therapeutic effects",
+                    },
+                  ].map(({ title, desc }, idx) => (
+                    <div
+                      key={idx}
+                      className="bg-white shadow-sm p-6 rounded-lg transition-transform duration-500 ease-in-out hover:scale-105"
+                    >
+                      <h3 className="font-semibold mb-2 text-[#1E293B]">
+                        {title}
+                      </h3>
+                      <p className="text-gray-600">{desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className="mb-16 px-4">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-2xl font-semibold mb-6 text-center text-[#1E293B]">
+                  Clinical Evidence
+                </h2>
+                <div className="flex justify-center">
+                  <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-6 text-center text-sm max-w-4xl">
+                    {[
+                      {
+                        phase: "Phase I",
+                        label: "Completed",
+                        percent: 100,
+                        color: "bg-green-500",
+                      },
+                      {
+                        phase: "Phase II",
+                        label: "In Progress",
+                        percent: 60,
+                        color: "bg-yellow-400",
+                      },
+                      {
+                        phase: "Phase III",
+                        label: "In Preparation",
+                        percent: 30,
+                        color: "bg-blue-400",
+                      },
+                    ].map(({ phase, label, percent, color }, idx) => (
+                      <div
+                        key={idx}
+                        className="bg-white border p-4 rounded-lg flex flex-col items-center"
+                      >
+                        <h4 className="font-semibold mb-1 text-[#1E293B]">
+                          {phase}
+                        </h4>
+                        <span className="text-xs text-gray-500 mb-2">
+                          {label}
+                        </span>
+                        <div className="w-full h-2 bg-gray-200 rounded-full mb-2">
+                          <div
+                            className={`h-full rounded-full ${color}`}
+                            style={{ width: `${percent}%` }}
+                          ></div>
+                        </div>
+                        <p className="text-gray-600 text-xs">
+                          {phase === "Phase I"
+                            ? "Safety and initial efficacy established"
+                            : phase === "Phase II"
+                              ? "Expanded patient trials ongoing"
+                              : "Large-scale trials in preparation"}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="mb-20 px-4">
+              <div className="space-y-4 max-w-xl mx-auto">
+                <ResearchAccordion />
+              </div>
             </div>
           </section>
         </div>
