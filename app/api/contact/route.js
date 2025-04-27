@@ -25,7 +25,7 @@ export async function POST(req) {
         headers: {
           "Content-Type": "application/json",
         },
-      }
+      },
     );
   } catch (error) {
     console.error("Form submission error:", error);
@@ -39,7 +39,7 @@ export async function POST(req) {
         headers: {
           "Content-Type": "application/json",
         },
-      }
+      },
     );
   }
 }

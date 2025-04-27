@@ -12,6 +12,7 @@ export default function SciencePage() {
   const [pageInView, setPageInView] = useState(false);
 
   useEffect(() => {
+    const node = pageRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -19,15 +20,15 @@ export default function SciencePage() {
           observer.disconnect();
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
 
-    if (pageRef.current) {
-      observer.observe(pageRef.current);
+    if (node) {
+      observer.observe(node);
     }
 
     return () => {
-      if (pageRef.current) {
+      if (node) {
         observer.disconnect();
       }
     };
