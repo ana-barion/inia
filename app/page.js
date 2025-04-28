@@ -1,13 +1,10 @@
 import Image from "next/image";
 
 import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
 
-export default function Home() {
+export default async function Home() {
   return (
     <div className="flex flex-col min-h-screen" style={{ background: "white" }}>
-      <Header />
-      {/* Main Content */}
       <main className="flex-grow">
         {/* Hero Section */}
         <section

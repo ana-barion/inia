@@ -1,7 +1,8 @@
-"use client";
-
 import { Geist, Geist_Mono } from "next/font/google";
 import PropTypes from "prop-types";
+
+import Header from "@/components/layout/Header";
+import { getHeader } from "@/lib/sanity/queries";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,7 +15,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const header = await getHeader();
+
   return (
     <html
       lang="en"
@@ -30,6 +33,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="antialiased bg-white text-black dark:bg-black dark:text-white">
+        <Header header={header} />
         {children}
       </body>
     </html>
