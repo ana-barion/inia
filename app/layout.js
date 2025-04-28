@@ -1,3 +1,5 @@
+"use client";
+
 import { Geist, Geist_Mono } from "next/font/google";
 import PropTypes from "prop-types";
 import "./globals.css";
@@ -12,22 +14,20 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
-  title: "INIA Biosciences",
-  description: "INIA",
-};
-
 export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`dark ${geistSans.variable} ${geistMono.variable}`} // ← dark mode enabled here
+      className={`dark ${geistSans.variable} ${geistMono.variable}`}
     >
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/dolphin.png" type="image/svg+xml" />
-        <title>{metadata.title}</title>
-        <meta name="description" content={metadata.description} />
+        <title>INIA Biosciences</title>
+        <meta
+          name="description"
+          content="INIA Biosciences - Revolutionizing healthcare through innovative biomarker research and personalized medicine solutions."
+        />
       </head>
       <body className="antialiased bg-white text-black dark:bg-black dark:text-white">
         {children}
