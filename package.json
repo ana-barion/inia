@@ -41,7 +41,7 @@
     "lint-staged": "^15.5.0",
     "pa11y-ci": "^3.0.1",
     "prettier": "^3.5.3",
-    "tailwindcss": "^4"
+    "tailwindcss": "^4.1.4"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

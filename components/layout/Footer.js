@@ -10,83 +10,95 @@ import Link from "next/link";
  */
 export default function Footer() {
   return (
-    <footer className="relative bg-white border-t border-gray-200 overflow-hidden">
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+    <footer
+      className="relative overflow-hidden pt-16 pb-8"
+      style={{
+        background:
+          "linear-gradient(120deg, #0a2239 60%, var(--inia-secondary-dark-gray) 100%)",
+      }}
+    >
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-12">
           {/* Company Info */}
-          <div className="space-y-6">
-            <div className="flex items-center">
+          <div className="space-y-8">
+            <div className="flex items-center mb-2">
               <Image
                 src="/logo.svg"
                 alt="INIA Logo"
-                width={150}
-                height={50}
-                className="h-12 w-auto transition-all duration-300 hover:scale-105 hover:brightness-110"
+                width={160}
+                height={54}
+                className="h-14 w-auto"
               />
             </div>
-            <p className="text-gray-700 text-sm leading-relaxed">
+            <p className="text-[var(--inia-secondary-offwhite)] text-base leading-relaxed font-light">
               Revolutionizing healthcare through{" "}
-              <span className="text-gray-900 font-semibold">
+              <span className="text-[var(--inia-primary-teal)] font-semibold">
                 innovative biomarker research
               </span>{" "}
               and{" "}
-              <span className="text-gray-900 font-semibold">
+              <span className="text-[var(--inia-primary-teal)] font-semibold">
                 personalized medicine
               </span>{" "}
               solutions.
             </p>
-            <div className="flex items-center space-x-4">
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-600 hover:text-gray-900 transition-all duration-300 hover:scale-110 transform hover:rotate-3"
-                aria-label="LinkedIn"
-              >
-                <Image
-                  src="/linkedin.svg"
-                  alt="LinkedIn"
-                  width={20}
-                  height={20}
-                />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-600 hover:text-gray-900 transition-all duration-300 hover:scale-110 transform hover:-rotate-3"
-                aria-label="Twitter"
-              >
-                <Image
-                  src="/twitter.svg"
-                  alt="Twitter"
-                  width={20}
-                  height={20}
-                />
-              </a>
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-600 hover:text-gray-900 transition-all duration-300 hover:scale-110 transform hover:rotate-3"
-                aria-label="Facebook"
-              >
-                <Image
-                  src="/facebook.svg"
-                  alt="Facebook"
-                  width={20}
-                  height={20}
-                />
-              </a>
+            <div className="flex items-center space-x-4 mt-4">
+              {[
+                {
+                  href: "https://linkedin.com",
+                  icon: "/linkedin.svg",
+                  hover: "var(--inia-primary-blue)",
+                },
+                {
+                  href: "https://twitter.com",
+                  icon: "/twitter.svg",
+                  hover: "var(--inia-additional-cyan)",
+                },
+                {
+                  href: "https://facebook.com",
+                  icon: "/facebook.svg",
+                  hover: "var(--inia-primary-gold)",
+                },
+              ].map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-all duration-300"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: 44,
+                    height: 44,
+                    borderRadius: "50%",
+                    background: "transparent",
+                  }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.background = item.hover)
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.background = "transparent")
+                  }
+                >
+                  <Image
+                    src={item.icon}
+                    alt=""
+                    width={24}
+                    height={24}
+                    style={{ filter: "invert(1)" }}
+                  />
+                </a>
+              ))}
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-gray-900 font-bold mb-4 text-lg tracking-wide">
+            <h3 className="text-[var(--inia-primary-gold)] font-bold mb-6 text-lg tracking-widest uppercase">
               Quick Links
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-4">
               {[
                 { name: "Science", href: "/science" },
                 { name: "Team", href: "/team" },
@@ -97,10 +109,10 @@ export default function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="relative inline-block text-gray-700 hover:text-gray-900 font-medium transition-all duration-300 group"
+                    className="relative inline-block text-[var(--inia-secondary-offwhite)] hover:text-[var(--inia-primary-teal)] font-medium transition-all duration-300 group text-base"
                   >
                     <span className="relative z-10">{link.name}</span>
-                    <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-gradient-to-r from-gray-900 to-gray-800 transition-all duration-300 group-hover:w-full"></span>
+                    <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-gradient-to-r from-[var(--inia-primary-teal)] to-[var(--inia-primary-gold)] transition-all duration-300 group-hover:w-full"></span>
                   </Link>
                 </li>
               ))}
@@ -109,13 +121,13 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-gray-900 font-bold mb-4 text-lg tracking-wide">
+            <h3 className="text-[var(--inia-primary-gold)] font-bold mb-6 text-lg tracking-widest uppercase">
               Contact
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-4 text-base">
               <li className="flex items-start space-x-3">
                 <svg
-                  className="w-5 h-5 text-gray-600 group-hover:text-gray-900 mt-1 flex-shrink-0 transition-all duration-300"
+                  className="w-6 h-6 text-[var(--inia-primary-teal)] group-hover:text-[var(--inia-primary-gold)] mt-1 flex-shrink-0 transition-all duration-300"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -133,7 +145,7 @@ export default function Footer() {
                     d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                   />
                 </svg>
-                <span className="text-gray-700 text-sm leading-relaxed">
+                <span className="text-[var(--inia-secondary-offwhite)] leading-relaxed">
                   123 Innovation Drive
                   <br />
                   Cambridge, MA 02139
@@ -141,7 +153,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start space-x-3">
                 <svg
-                  className="w-5 h-5 text-gray-600 group-hover:text-gray-900 mt-1 flex-shrink-0 transition-all duration-300"
+                  className="w-6 h-6 text-[var(--inia-primary-teal)] group-hover:text-[var(--inia-primary-gold)] mt-1 flex-shrink-0 transition-all duration-300"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -155,14 +167,14 @@ export default function Footer() {
                 </svg>
                 <a
                   href="mailto:contact@inibiosciences.com"
-                  className="text-gray-700 hover:text-gray-900 transition-all duration-300 text-sm font-medium"
+                  className="text-[var(--inia-secondary-offwhite)] hover:text-[var(--inia-primary-teal)] transition-all duration-300 font-medium"
                 >
                   contact@inibiosciences.com
                 </a>
               </li>
               <li className="flex items-start space-x-3">
                 <svg
-                  className="w-5 h-5 text-gray-600 group-hover:text-gray-900 mt-1 flex-shrink-0 transition-all duration-300"
+                  className="w-6 h-6 text-[var(--inia-primary-teal)] group-hover:text-[var(--inia-primary-gold)] mt-1 flex-shrink-0 transition-all duration-300"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -176,7 +188,7 @@ export default function Footer() {
                 </svg>
                 <a
                   href="tel:+16175550123"
-                  className="text-gray-700 hover:text-gray-900 transition-all duration-300 text-sm font-medium"
+                  className="text-[var(--inia-secondary-offwhite)] hover:text-[var(--inia-primary-teal)] transition-all duration-300 font-medium"
                 >
                   +1 (617) 555-0123
                 </a>
@@ -186,71 +198,78 @@ export default function Footer() {
 
           {/* Newsletter */}
           <div>
-            <h3 className="text-gray-900 font-bold mb-4 text-lg tracking-wide">
+            <h3 className="text-[var(--inia-primary-gold)] font-bold mb-6 text-lg tracking-widest uppercase">
               Stay Updated
             </h3>
-            <p className="text-sm text-gray-700 mb-4">
+            <p className="text-base text-[var(--inia-secondary-offwhite)] mb-6 font-light">
               Subscribe to our newsletter for the latest updates in{" "}
-              <span className="text-gray-900 font-semibold">
+              <span className="text-[var(--inia-primary-teal)] font-semibold">
                 biomarker research
               </span>{" "}
               and{" "}
-              <span className="text-gray-900 font-semibold">
+              <span className="text-[var(--inia-primary-teal)] font-semibold">
                 clinical trials
               </span>
               .
             </p>
-            <form className="space-y-2" onSubmit={(e) => e.preventDefault()}>
-              <div className="relative">
+            <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
+              <div className="relative flex">
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-sm bg-white/90 shadow-sm placeholder:text-gray-400"
+                  className="w-full px-5 py-3 rounded-l-full border-none focus:ring-2 focus:ring-[var(--inia-primary-teal)] transition-all duration-300 text-base bg-white/90 shadow-sm placeholder:text-[var(--inia-secondary-light-gray)] font-medium"
                 />
+                <button
+                  type="submit"
+                  className="px-6 py-3 rounded-r-full font-bold text-base text-white transition-all duration-300"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, var(--inia-primary-gold), var(--inia-primary-teal))",
+                  }}
+                >
+                  Subscribe
+                </button>
               </div>
-              <button
-                type="submit"
-                className="w-full bg-gradient-to-r from-gray-900 to-gray-800 text-white px-4 py-2 rounded-md shadow-sm hover:from-gray-800 hover:to-gray-700 transition-all duration-300 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 hover:brightness-110"
-              >
-                Subscribe
-              </button>
             </form>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-gray-200">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-gray-500 text-sm">
-              © {new Date().getFullYear()} INIA Biosciences. All rights
-              reserved.
-            </div>
-            <div className="flex space-x-6 text-sm">
-              <a
-                href="/privacy"
-                className="text-gray-500 hover:text-gray-900 transition-all duration-300 font-medium"
-              >
-                Privacy Policy
-              </a>
-              <a
-                href="/terms"
-                className="text-gray-500 hover:text-gray-900 transition-all duration-300 font-medium"
-              >
-                Terms of Service
-              </a>
-              <a
-                href="/cookies"
-                className="text-gray-500 hover:text-gray-900 transition-all duration-300 font-medium"
-              >
-                Cookie Policy
-              </a>
-            </div>
+        <div
+          className="mt-16 pt-8 border-t flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0"
+          style={{ borderColor: "var(--inia-primary-teal)" }}
+        >
+          <div className="text-[var(--inia-secondary-offwhite)] text-sm font-light">
+            © {new Date().getFullYear()} INIA Biosciences. All rights reserved.
+          </div>
+          <div className="flex space-x-8 text-sm">
+            <a
+              href="/privacy"
+              className="text-[var(--inia-secondary-offwhite)] hover:text-[var(--inia-primary-teal)] transition-all duration-300 font-medium"
+            >
+              Privacy Policy
+            </a>
+            <a
+              href="/terms"
+              className="text-[var(--inia-secondary-offwhite)] hover:text-[var(--inia-primary-teal)] transition-all duration-300 font-medium"
+            >
+              Terms of Service
+            </a>
+            <a
+              href="/cookies"
+              className="text-[var(--inia-secondary-offwhite)] hover:text-[var(--inia-primary-teal)] transition-all duration-300 font-medium"
+            >
+              Cookie Policy
+            </a>
           </div>
         </div>
       </div>
 
       {/* FDA Compliance Notice */}
-      <div className="bg-gray-100 py-3 text-center text-xs text-gray-500 font-medium shadow-inner">
+      <div
+        className="py-4 text-center text-xs font-medium shadow-inner mt-8"
+        style={{ background: "var(--inia-primary-teal)", color: "white" }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           The statements made on this website have not been evaluated by the
           FDA. Our products and services are not intended to diagnose, treat,
