@@ -1,109 +1,129 @@
 import Image from "next/image";
 
+import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
+
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="flex flex-col min-h-screen bg-white text-gray-800">
+      <Header />
+      {/* Main Content */}
+      <main className="flex-grow">
+        {/* Hero Section */}
+        <section className="container mx-auto px-4 py-16 md:py-24 text-center md:text-left">
+          <div className="max-w-2xl">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+              Harnessing ultrasound bioelectronics for the future of healthcare
+            </h1>
+            <p className="text-lg text-gray-600 mb-8">
+              Revolutionizing psoriasis treatment through innovative
+              bioelectronic medicine
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+              <button className="bg-gray-800 text-white px-6 py-3 rounded hover:bg-gray-900 transition-colors">
+                Learn About Our Treatment
+              </button>
+              <button className="border border-gray-400 text-gray-700 px-6 py-3 rounded hover:bg-gray-100 transition-colors">
+                For Healthcare Providers
+              </button>
+            </div>
+          </div>
+        </section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Deploy to Vercel (opens in new tab)"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt=""
-              width={20}
-              height={20}
-              aria-hidden="true"
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Read our documentation (opens in new tab)"
-          >
-            Read our docs
-          </a>
-        </div>
+        {/* Trusted By Section */}
+        <section className="bg-gray-50 py-12">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-sm uppercase text-gray-500 font-semibold mb-8">
+              Trusted by Leading Institutions
+            </h2>
+            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+              <div className="text-gray-400">[Logo 1]</div>
+              <div className="text-gray-400">[Logo 2]</div>
+              <div className="text-gray-400">[Logo 3]</div>
+              <div className="text-gray-400">[Logo 4]</div>
+              <div className="text-gray-400">[Logo 5]</div>
+            </div>
+          </div>
+        </section>
+
+        {/* Why Choose INIA Section */}
+        <section className="container mx-auto px-4 py-16 md:py-24">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            Why Choose INIA
+          </h2>
+          <div className="grid md:grid-cols-3 gap-10">
+            <div className="text-center">
+              <div className="text-4xl mb-4">[ICON]</div> {/* Placeholder */}
+              <h3 className="text-xl font-semibold mb-2">
+                Non-Invasive Treatment
+              </h3>
+              <p className="text-gray-600">
+                Advanced ultrasound technology for gentle, effective treatment.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl mb-4">[ICON]</div> {/* Placeholder */}
+              <h3 className="text-xl font-semibold mb-2">At-Home Use</h3>
+              <p className="text-gray-600">
+                Convenient treatment in the comfort of your own home.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl mb-4">[ICON]</div> {/* Placeholder */}
+              <h3 className="text-xl font-semibold mb-2">Proven Results</h3>
+              <p className="text-gray-600">
+                Clinically validated outcomes for lasting relief.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* 3 Minutes a Day Section */}
+        <section className="bg-gray-50 py-16 md:py-24">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-center mb-12">
+              3 Minutes a Day
+            </h2>
+            <div className="flex justify-center items-center flex-wrap gap-6">
+              {[
+                { img: "vest.svg", label: "Wear the Vest" },
+                { img: "phone.svg", label: "Launch the App" },
+                { img: "couch.svg", label: "Relax for 3 Minutes" },
+                { img: "battery.svg", label: "Recharge and Repeat" },
+              ].map((step, index, arr) => (
+                <div key={index} className="flex items-center gap-0 sm:gap-4">
+                  <div className="flex flex-col items-center transition-transform duration-500 ease-in-out hover:scale-105">
+                    <div className="w-20 h-20 border-2 border-[#355D84] rounded-full bg-white flex items-center justify-center p-3">
+                      <Image
+                        src={`/${step.img}`}
+                        alt={step.label}
+                        width={40}
+                        height={40}
+                        style={{ color: "#355D84" }}
+                      />
+                    </div>
+                    <p className="text-lg mt-2 text-center text-[#1E293B]">
+                      {step.label}
+                    </p>
+                  </div>
+                  {index < arr.length - 1 && (
+                    <div className="flex items-center justify-center">
+                      <Image
+                        src="/arrow.svg"
+                        alt="arrow"
+                        width={32}
+                        height={32}
+                        style={{ color: "#355D84" }}
+                      />
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Learn Next.js (opens in new tab)"
-        >
-          <Image
-            src="/file.svg"
-            alt=""
-            width={16}
-            height={16}
-            aria-hidden="true"
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="View examples (opens in new tab)"
-        >
-          <Image
-            src="/window.svg"
-            alt=""
-            width={16}
-            height={16}
-            aria-hidden="true"
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Go to Next.js website (opens in new tab)"
-        >
-          <Image
-            src="/globe.svg"
-            alt=""
-            width={16}
-            height={16}
-            aria-hidden="true"
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      <Footer />
     </div>
   );
 }
