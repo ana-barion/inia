@@ -26,21 +26,28 @@ export default function Header() {
   return (
     <header
       className="w-full sticky top-0 z-50 shadow-lg"
-      style={{ background: "var(--background)" }}
+      style={{ background: "white" }}
     >
       {/* Top bar with email and social links */}
       <div
         className="w-full flex items-center justify-between px-4 h-7 md:h-8 lg:h-9 header-topbar overflow-hidden"
-        style={{ background: "var(--inia-primary-teal)" }}
+        style={{
+          background: "var(--inia-primary-teal)",
+          boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+        }}
       >
         <a
           href="mailto:contact@inibiosciences.com"
           className="text-sm tracking-wide font-medium transition-colors duration-300 header-contact-email"
-          style={{ color: "#fff", textShadow: "0 2px 4px rgba(0,0,0,0.18)" }}
+          style={{
+            color: "#fff",
+            textShadow: "0 2px 4px rgba(0,0,0,0.18)",
+            paddingLeft: "4px",
+          }}
         >
           contact@inibiosciences.com
         </a>
-        <div className="flex items-center space-x-3 sm:space-x-2 md:space-x-3">
+        <div className="flex items-center space-x-3 sm:space-x-2 md:space-x-3 pr-2">
           {[
             {
               href: "https://www.linkedin.com/company/inia-biosciences/",
@@ -93,31 +100,47 @@ export default function Header() {
         className="w-full border-b"
         style={{
           borderColor: "var(--inia-primary-teal)",
-          background: "var(--background)",
+          background: "white",
+          boxShadow: "0 2px 4px rgba(0,0,0,0.05)",
         }}
       >
-        <div className="w-full px-2 sm:px-4 md:px-8 flex items-center h-14 md:h-16 lg:h-20 justify-between flex-nowrap overflow-x-hidden gap-x-2">
+        <div className="w-full px-6 sm:px-8 md:px-10 lg:px-12 flex items-center h-14 md:h-16 lg:h-20 justify-between flex-nowrap overflow-x-hidden gap-x-2">
           {/* Left: Logo */}
-          <div className="flex items-center flex-shrink-0 min-w-0 h-full">
+          <div className="flex items-center flex-shrink-0 min-w-0 h-full pl-4 md:pl-6">
             <Link
               href="/"
-              className="flex-shrink-0 flex items-center self-center py-0 pr-2 sm:py-0 sm:pr-4 h-full"
-              style={{ minWidth: 0 }}
+              className="flex-shrink-0 flex items-center self-center py-0 pr-4 sm:py-0 sm:pr-6 h-full logo-hover"
+              style={{ minWidth: 0, position: "relative", overflow: "visible" }}
             >
               <Image
-                src="/logo.png"
+                src="/gray_logo.png"
                 alt="INIA Logo"
-                className="w-full max-w-[120px] h-8 sm:max-w-[170px] sm:h-10 md:max-w-[210px] md:h-12 lg:h-14 object-contain align-middle"
-                width={210}
-                height={56}
+                className="w-full max-w-[140px] h-9 sm:max-w-[200px] sm:h-12 md:max-w-[240px] md:h-14 lg:h-16 object-contain align-middle transition-transform duration-300 ease-in-out"
+                width={240}
+                height={64}
                 priority
-                style={{ position: "relative", top: "3px" }}
+                style={{
+                  position: "relative",
+                  top: "3px",
+                  transition: "all 0.3s ease",
+                  transformOrigin: "center",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform =
+                    "scale(1.05) translateX(2px)";
+                  e.currentTarget.style.filter =
+                    "drop-shadow(0 0 4px rgba(46, 196, 182, 0.4))";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "scale(1)";
+                  e.currentTarget.style.filter = "none";
+                }}
               />
             </Link>
           </div>
 
           {/* Center: Navigation (hidden on mobile) */}
-          <nav className="min-w-0 flex-1 justify-center items-center space-x-4 sm:space-x-6 md:space-x-8 hidden lg:flex">
+          <nav className="min-w-0 flex-1 justify-center items-center space-x-6 sm:space-x-8 md:space-x-10 hidden lg:flex">
             {[
               { href: "/", label: "Home" },
               { href: "/science", label: "Science" },
@@ -141,12 +164,12 @@ export default function Header() {
           <div className="flex items-center flex-shrink-0 min-w-0 justify-end">
             <Link
               href="/join"
-              className="mr-1 sm:ml-4 md:ml-6 inline-flex items-center justify-center px-2 sm:px-4 py-1.5 sm:py-2 lg:py-3 rounded-full shadow text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-widest transition-all duration-300 join-cta-btn whitespace-nowrap w-full max-w-[100px] sm:max-w-[140px] md:max-w-[180px] min-w-[60px] hidden lg:inline-flex flex-shrink-0"
+              className="mr-2 sm:ml-6 md:ml-8 inline-flex items-center justify-center px-3 sm:px-5 py-2 sm:py-2.5 lg:py-3 rounded-full shadow text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-widest transition-all duration-300 join-cta-btn whitespace-nowrap w-full max-w-[110px] sm:max-w-[150px] md:max-w-[190px] min-w-[70px] hidden lg:inline-flex flex-shrink-0"
               style={{
                 background:
                   "linear-gradient(90deg, var(--inia-primary-gold), var(--inia-primary-teal))",
                 color: "white",
-                boxShadow: "0 2px 12px 0 rgba(46,196,182,0.15)",
+                boxShadow: "0 3px 12px 0 rgba(46,196,182,0.2)",
                 letterSpacing: 2,
               }}
             >
@@ -167,7 +190,7 @@ export default function Header() {
               <svg
                 className={`w-7 h-7 transition-all duration-200 ${isMenuOpen ? "opacity-0" : "opacity-100"}`}
                 fill="none"
-                stroke="currentColor"
+                stroke="var(--inia-primary-blue)"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -182,7 +205,7 @@ export default function Header() {
               <svg
                 className={`w-7 h-7 absolute transition-all duration-200 ${isMenuOpen ? "opacity-100" : "opacity-0"}`}
                 fill="none"
-                stroke="currentColor"
+                stroke="var(--inia-primary-blue)"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -226,7 +249,7 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-xl sm:text-2xl font-bold uppercase tracking-widest text-[var(--inia-secondary-offwhite)] nav-link-underline w-full block py-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--inia-primary-teal)]"
+                className="text-xl sm:text-2xl font-bold uppercase tracking-widest text-white nav-link-underline w-full block py-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--inia-primary-teal)]"
                 style={{ letterSpacing: 3, background: "transparent" }}
                 onClick={() => setIsMenuOpen(false)}
                 tabIndex={0}

@@ -12,13 +12,19 @@
     "check-deps": "depcheck"
   },
   "dependencies": {
+    "@sanity/client": "^6.29.1",
+    "@sanity/image-url": "^1.1.0",
+    "@sanity/vision": "^3.86.1",
     "framer-motion": "^12.6.5",
     "next": "15.2.2",
+    "next-sanity": "^9.10.2",
     "prop-types": "^15.8.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
-    "react-intersection-observer": "^9.16.0"
+    "react-intersection-observer": "^9.16.0",
+    "sanity": "^3.86.1",
+    "styled-components": "^6.1.17"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.26.10",

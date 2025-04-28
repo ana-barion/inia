@@ -5,10 +5,7 @@ import Header from "@/components/layout/Header";
 
 export default function Home() {
   return (
-    <div
-      className="flex flex-col min-h-screen"
-      style={{ background: "var(--background)", color: "var(--foreground)" }}
-    >
+    <div className="flex flex-col min-h-screen" style={{ background: "white" }}>
       <Header />
       {/* Main Content */}
       <main className="flex-grow">
@@ -35,10 +32,7 @@ export default function Home() {
               <br />
               for the future of healthcare
             </h1>
-            <p
-              className="text-2xl mb-10 font-light"
-              style={{ color: "var(--inia-secondary-offwhite)" }}
-            >
+            <p className="text-2xl mb-10 font-light" style={{ color: "white" }}>
               Revolutionizing psoriasis treatment through innovative
               bioelectronic medicine
             </p>
@@ -82,10 +76,7 @@ export default function Home() {
         </section>
 
         {/* Trusted By Section */}
-        <section
-          style={{ background: "var(--inia-secondary-offwhite)" }}
-          className="py-16"
-        >
+        <section style={{ background: "white" }} className="py-16">
           <div className="container mx-auto px-4 text-center">
             <h2
               className="text-lg uppercase font-bold mb-10 tracking-widest"
@@ -165,22 +156,14 @@ export default function Home() {
                 >
                   {item.title}
                 </h3>
-                <p
-                  className="text-base font-light"
-                  style={{ color: "var(--inia-secondary-offwhite)" }}
-                >
-                  {item.desc}
-                </p>
+                <p className="text-base font-light">{item.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
         {/* 3 Minutes a Day Section */}
-        <section
-          style={{ background: "var(--inia-secondary-offwhite)" }}
-          className="py-24"
-        >
+        <section style={{ background: "white" }} className="py-24">
           <div className="container mx-auto px-4">
             <h2
               className="text-3xl font-extrabold text-center mb-16 uppercase tracking-widest"
