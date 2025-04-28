@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -11,211 +11,271 @@ import Link from "next/link";
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  // Lock scroll when mobile menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
 
   return (
-    <header className="w-full">
+    <header
+      className="w-full sticky top-0 z-50 shadow-lg"
+      style={{ background: "white" }}
+    >
       {/* Top bar with email and social links */}
-      <div className="w-full bg-gray-100 py-2">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0">
-          <a
-            href="mailto:contact@inibiosciences.com"
-            className="text-sm text-gray-600 hover:text-gray-900 truncate max-w-full transition-colors duration-300 hover:underline decoration-gray-400 hover:decoration-gray-900"
-          >
-            contact@inibiosciences.com
-          </a>
-          <div className="flex items-center space-x-4">
+      <div
+        className="w-full flex items-center justify-between px-4 h-7 md:h-8 lg:h-9 header-topbar overflow-hidden"
+        style={{
+          background: "var(--inia-primary-teal)",
+          boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+        }}
+      >
+        <a
+          href="mailto:contact@inibiosciences.com"
+          className="text-sm tracking-wide font-medium transition-colors duration-300 header-contact-email"
+          style={{
+            color: "#fff",
+            textShadow: "0 2px 4px rgba(0,0,0,0.18)",
+            paddingLeft: "4px",
+          }}
+        >
+          contact@inibiosciences.com
+        </a>
+        <div className="flex items-center space-x-3 sm:space-x-2 md:space-x-3 pr-2">
+          {[
+            {
+              href: "https://www.linkedin.com/company/inia-biosciences/",
+              icon: "/linkedin.svg",
+              hover: "var(--inia-primary-blue)",
+              label: "LinkedIn",
+            },
+            {
+              href: "https://twitter.com/IniaBiosciences",
+              icon: "/twitter.svg",
+              hover: "var(--inia-additional-cyan)",
+              label: "Twitter",
+            },
+          ].map((item) => (
             <a
-              href="https://linkedin.com"
+              key={item.href}
+              href={item.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-600 hover:text-blue-600 transition-all duration-300 hover:scale-110 transform hover:rotate-3"
+              aria-label={item.label}
+              className="header-social-icon p-2 focus-visible:ring-2 focus-visible:ring-white"
+              style={{ background: "transparent" }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.background =
+                  item.label === "LinkedIn" ? "#1793b6" : "#0e7c86")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.background = "transparent")
+              }
             >
-              <Image
-                src="/linkedin.svg"
-                alt="LinkedIn"
-                width={16}
-                height={16}
-              />
+              <span className="py-1 flex items-center justify-center">
+                <div className="icon-glow-wrapper w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 rounded-full relative overflow-hidden flex items-center justify-center">
+                  <Image
+                    src={item.icon}
+                    alt={item.label}
+                    className="w-full h-full"
+                    width={24}
+                    height={24}
+                    style={{ filter: "invert(1)" }}
+                  />
+                </div>
+              </span>
             </a>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 hover:text-blue-400 transition-all duration-300 hover:scale-110 transform hover:-rotate-3"
-            >
-              <Image src="/twitter.svg" alt="Twitter" width={16} height={16} />
-            </a>
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 hover:text-blue-700 transition-all duration-300 hover:scale-110 transform hover:rotate-3"
-            >
-              <Image
-                src="/facebook.svg"
-                alt="Facebook"
-                width={16}
-                height={16}
-              />
-            </a>
-          </div>
+          ))}
         </div>
       </div>
 
       {/* Main navigation */}
-      <div className="w-full bg-white [box-shadow:0_1px_1px_rgba(0,0,0,0.025)] border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16 sm:h-20">
-            {/* Logo */}
+      <div
+        className="w-full border-b"
+        style={{
+          borderColor: "var(--inia-primary-teal)",
+          background: "white",
+          boxShadow: "0 2px 4px rgba(0,0,0,0.05)",
+        }}
+      >
+        <div className="w-full px-6 sm:px-8 md:px-10 lg:px-12 flex items-center h-14 md:h-16 lg:h-20 justify-between flex-nowrap overflow-x-hidden gap-x-2">
+          {/* Left: Logo */}
+          <div className="flex items-center flex-shrink-0 min-w-0 h-full pl-4 md:pl-6">
             <Link
               href="/"
-              className="flex-shrink-0 transition-all duration-300 hover:scale-105 hover:brightness-110"
+              className="flex-shrink-0 flex items-center self-center py-0 pr-4 sm:py-0 sm:pr-6 h-full logo-hover"
+              style={{ minWidth: 0, position: "relative", overflow: "visible" }}
             >
               <Image
-                src="/logo.svg"
+                src="/gray_logo.png"
                 alt="INIA Logo"
-                width={120}
-                height={40}
-                className="w-24 sm:w-32 h-auto"
+                className="w-full max-w-[140px] h-9 sm:max-w-[200px] sm:h-12 md:max-w-[240px] md:h-14 lg:h-16 object-contain align-middle transition-transform duration-300 ease-in-out"
+                width={240}
+                height={64}
+                priority
+                style={{
+                  position: "relative",
+                  top: "3px",
+                  transition: "all 0.3s ease",
+                  transformOrigin: "center",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform =
+                    "scale(1.05) translateX(2px)";
+                  e.currentTarget.style.filter =
+                    "drop-shadow(0 0 4px rgba(46, 196, 182, 0.4))";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "scale(1)";
+                  e.currentTarget.style.filter = "none";
+                }}
               />
             </Link>
+          </div>
 
-            {/* Desktop navigation */}
-            <nav className="hidden md:flex items-center space-x-4 lg:space-x-8">
+          {/* Center: Navigation (hidden on mobile) */}
+          <nav className="min-w-0 flex-1 justify-center items-center space-x-6 sm:space-x-8 md:space-x-10 hidden lg:flex">
+            {[
+              { href: "/", label: "Home" },
+              { href: "/science", label: "Science" },
+              { href: "/team", label: "Team" },
+              { href: "/news", label: "News" },
+              { href: "/contact", label: "Contact" },
+            ].map((link) => (
               <Link
-                href="/"
-                className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium relative group transition-all duration-300"
+                key={link.href}
+                href={link.href}
+                className="relative px-2 py-1 text-sm font-semibold tracking-widest uppercase text-[var(--inia-primary-blue)] hover:text-[var(--inia-primary-gold)] transition-colors duration-200 group nav-link-underline"
+                style={{ letterSpacing: 2 }}
               >
-                Home
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-gray-900 to-gray-700 transition-all duration-300 group-hover:w-full"></span>
+                {link.label}
+                <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-gradient-to-r from-[var(--inia-primary-blue)] to-[var(--inia-primary-gold)] transition-all duration-300 group-hover:w-full"></span>
               </Link>
-              <Link
-                href="/science"
-                className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium relative group transition-all duration-300"
-              >
-                Science
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-gray-900 to-gray-700 transition-all duration-300 group-hover:w-full"></span>
-              </Link>
-              <Link
-                href="/team"
-                className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium relative group transition-all duration-300"
-              >
-                Team
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-gray-900 to-gray-700 transition-all duration-300 group-hover:w-full"></span>
-              </Link>
-              <Link
-                href="/news"
-                className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium relative group transition-all duration-300"
-              >
-                News
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-gray-900 to-gray-700 transition-all duration-300 group-hover:w-full"></span>
-              </Link>
-              <Link
-                href="/contact"
-                className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium relative group transition-all duration-300"
-              >
-                Contact
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-gray-900 to-gray-700 transition-all duration-300 group-hover:w-full"></span>
-              </Link>
-              <Link
-                href="/join"
-                className="ml-4 lg:ml-8 inline-flex items-center justify-center px-3 lg:px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gradient-to-r from-gray-900 to-gray-800 hover:from-gray-800 hover:to-gray-700 whitespace-nowrap transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 hover:brightness-110"
-              >
-                Join Our Study
-              </Link>
-            </nav>
+            ))}
+          </nav>
 
-            {/* Mobile menu button */}
-            <div className="flex items-center md:hidden">
-              <button
-                onClick={toggleMenu}
-                className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 -mr-2 transition-all duration-300 hover:scale-110"
-                aria-expanded={isMenuOpen}
-                aria-label="Toggle menu"
+          {/* Right: CTA and Hamburger */}
+          <div className="flex items-center flex-shrink-0 min-w-0 justify-end">
+            <Link
+              href="/join"
+              className="mr-2 sm:ml-6 md:ml-8 inline-flex items-center justify-center px-3 sm:px-5 py-2 sm:py-2.5 lg:py-3 rounded-full shadow text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-widest transition-all duration-300 join-cta-btn whitespace-nowrap w-full max-w-[110px] sm:max-w-[150px] md:max-w-[190px] min-w-[70px] hidden lg:inline-flex flex-shrink-0"
+              style={{
+                background:
+                  "linear-gradient(90deg, var(--inia-primary-gold), var(--inia-primary-teal))",
+                color: "white",
+                boxShadow: "0 3px 12px 0 rgba(46,196,182,0.2)",
+                letterSpacing: 2,
+              }}
+            >
+              <span className="block lg:hidden">Join</span>
+              <span className="hidden lg:block">Join Our Study</span>
+            </Link>
+            {/* Hamburger button (mobile only) */}
+            <button
+              className="ml-2 sm:ml-4 flex lg:hidden items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded focus:outline-none focus:ring-2 focus:ring-[var(--inia-primary-teal)] relative"
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMenuOpen}
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              <span className="sr-only">
+                {isMenuOpen ? "Close menu" : "Open menu"}
+              </span>
+              {/* Hamburger icon */}
+              <svg
+                className={`w-7 h-7 transition-all duration-200 ${isMenuOpen ? "opacity-0" : "opacity-100"}`}
+                fill="none"
+                stroke="var(--inia-primary-blue)"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <span className="sr-only">Open main menu</span>
-                {/* Icon for menu */}
-                <svg
-                  className={`${isMenuOpen ? "hidden" : "block"} h-6 w-6`}
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-                {/* Icon for close */}
-                <svg
-                  className={`${isMenuOpen ? "block" : "hidden"} h-6 w-6`}
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-            </div>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+              {/* Close icon */}
+              <svg
+                className={`w-7 h-7 absolute transition-all duration-200 ${isMenuOpen ? "opacity-100" : "opacity-0"}`}
+                fill="none"
+                stroke="var(--inia-primary-blue)"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile menu, show/hide based on menu state */}
-      <div className={`${isMenuOpen ? "block" : "hidden"} md:hidden bg-white`}>
-        <div className="pt-2 pb-3 space-y-1 px-4">
-          <Link
-            href="/"
-            className="block py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 rounded-md transition-all duration-300 hover:translate-x-2 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100"
-          >
-            Home
-          </Link>
-          <Link
-            href="/science"
-            className="block py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 rounded-md transition-all duration-300 hover:translate-x-2 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100"
-          >
-            Science
-          </Link>
-          <Link
-            href="/team"
-            className="block py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 rounded-md transition-all duration-300 hover:translate-x-2 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100"
-          >
-            Team
-          </Link>
-          <Link
-            href="/news"
-            className="block py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 rounded-md transition-all duration-300 hover:translate-x-2 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100"
-          >
-            News
-          </Link>
-          <Link
-            href="/contact"
-            className="block py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 rounded-md transition-all duration-300 hover:translate-x-2 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100"
-          >
-            Contact
-          </Link>
-          <Link
-            href="/join"
-            className="block py-2 pl-3 pr-4 text-base font-medium text-white bg-gradient-to-r from-gray-900 to-gray-800 hover:from-gray-800 hover:to-gray-700 rounded-md mt-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 hover:brightness-110"
-          >
-            Join Our Study
-          </Link>
+      {/* Mobile menu overlay */}
+      {isMenuOpen && (
+        <div
+          className="fixed inset-0 z-50 flex flex-col items-center justify-center animate-fadeIn px-4 sm:px-8"
+          style={{ background: "rgba(44, 62, 80, 0.98)" }}
+        >
+          {/* Logo/brand mark at the top */}
+          <div className="absolute top-6 left-1/2 -translate-x-1/2 flex items-center justify-center">
+            <Image
+              src="/logo.png"
+              alt="INIA Logo"
+              className="w-full max-w-xs h-12 sm:h-16 object-contain mx-auto mb-8"
+              width={320}
+              height={64}
+              priority
+            />
+          </div>
+          <nav className="flex flex-col space-y-8 text-center w-full max-w-xs mx-auto mt-20">
+            {[
+              { href: "/", label: "Home" },
+              { href: "/science", label: "Science" },
+              { href: "/team", label: "Team" },
+              { href: "/news", label: "News" },
+              { href: "/contact", label: "Contact" },
+            ].map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-xl sm:text-2xl font-bold uppercase tracking-widest text-white nav-link-underline w-full block py-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--inia-primary-teal)]"
+                style={{ letterSpacing: 3, background: "transparent" }}
+                onClick={() => setIsMenuOpen(false)}
+                tabIndex={0}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <Link
+              href="/join"
+              className="mt-8 inline-flex items-center justify-center px-6 sm:px-8 py-4 rounded-full shadow text-lg sm:text-xl font-bold uppercase tracking-widest join-cta-btn w-full"
+              style={{
+                background:
+                  "linear-gradient(90deg, var(--inia-primary-gold), var(--inia-primary-teal))",
+                color: "#fff",
+                boxShadow: "0 2px 12px 0 rgba(46,196,182,0.15)",
+                letterSpacing: 3,
+              }}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Join Our Study
+            </Link>
+          </nav>
         </div>
-      </div>
+      )}
     </header>
   );
 }
+
+// TODO: For full mobile responsiveness, implement a hamburger menu and mobile nav in a future step.
