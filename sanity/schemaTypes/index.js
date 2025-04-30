@@ -1,3 +1,5 @@
+import newsType from "./newsType";
+
 export const schema = {
-  types: [],
+  types: [newsType],
 };
