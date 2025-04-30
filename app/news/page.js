@@ -13,6 +13,21 @@ function formatDate(dateString) {
     day: "numeric",
   });
 }
+
+function formatDesc(desc) {
+  if (desc.length <= 100) {
+    return desc;
+  }
+  return desc.slice(0, 97) + '...';
+}
+
+function formatDescFeatured(desc) {
+  if (desc.length <= 200) {
+    return desc;
+  }
+  return desc.slice(0, 197) + '...';
+}
+
 export default function News() {
   const [activeFilter, setActiveFilter] = useState("All");
   const [email, setEmail] = useState("");
@@ -98,7 +113,7 @@ export default function News() {
                   Featured
                 </span>
                 <h2 className="text-lg font-semibold mt-2">{news.title}</h2>
-                <p className="text-sm text-gray-600 mt-1">{news.description}</p>
+                <p className="text-sm text-gray-600 mt-1">{formatDescFeatured(news.description)}</p>
                 <div className="flex justify-between items-center mt-4">
                   <div className="flex items-center">
                     <span className="text-xs text-gray-900 mr-6">
@@ -118,7 +133,7 @@ export default function News() {
 
         {filteredNews.length > 0 && currentNews && (
           <div className="container mx-auto px-4 py-20 flex flex-col justify-center items-center">
-            <div className="w-full h-[400px] max-w-md rounded-lg border border-gray-300 bg-white overflow-hidden shadow-sm">
+            <div className="w-full h-[450px] max-w-md rounded-lg border border-gray-300 bg-white overflow-hidden shadow-sm">
               <div className="bg-gray-200 h-48 flex items-center justify-center text-gray-500 text-sm">
                 <Image
                   src={currentNews.imageURL}
@@ -129,7 +144,7 @@ export default function News() {
                 />
               </div>
 
-              <div className="p-4">
+              <div className="p-5">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="bg-gray-200 text-gray-600 text-xs px-3 py-1 rounded-full">
                     {currentNews.type}
@@ -143,7 +158,7 @@ export default function News() {
                   {currentNews.title}
                 </h3>
                 <p className="text-sm text-gray-600 mb-8">
-                  {currentNews.description}
+                  {formatDesc(currentNews.description)}
                 </p>
 
                 <button className="text-gray-900 text-sm hover:cursor-pointer">
