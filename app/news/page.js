@@ -72,7 +72,7 @@ export default function News() {
       }
 
       query +=
-        '] | order(date desc){ _id, title, description, date, type, featured, "imageURL": image.asset->url }';
+        '] | order(date desc){ _id, title, description, date, type, featured, slug, "imageURL": image.asset->url }';
 
       const data = await client.fetch(query, params);
       setNewsItems(data);
