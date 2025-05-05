@@ -1,8 +1,10 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+
 import Footer from "../../components/layout/Footer";
 import Header from "../../components/layout/Header";
+
 import { client } from "../../sanity/lib/client";
 
 function formatDate(dateString) {
@@ -287,7 +289,9 @@ export default function News() {
 
         {filteredNews.length === 0 && (
           <div className="container mx-auto px-4 py-20 text-center">
-            <p className="text-gray-500">No news found for "{activeFilter}".</p>
+          <p className="text-gray-500">
+            No news found for &quot;{activeFilter}&quot;.
+          </p>
           </div>
         )}
 
