@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+
 import Image from "next/image";
 
 export default function ScienceExtension() {
@@ -18,7 +19,7 @@ export default function ScienceExtension() {
           <h3 className="text-2xl font-semibold text-[#1E293B] mb-2">How It Works</h3>
           <Image src="/IniaWhole.png" alt="Whole-body diagram" width={800} height={600} className="my-4 rounded-md" />
           <p className="text-gray-700 text-base italic">
-            "Focused ultrasound can be used to stimulate nerves in the spleen. This activates the body's natural inflammation reflex — a built-in neural circuit that tones down immune overactivation."
+            &ldquo;Focused ultrasound can be used to stimulate nerves in the spleen. This activates the body&apos;s natural inflammation reflex — a built-in neural circuit that tones down immune overactivation.&rdquo;
           </p>
         </div>
 
@@ -26,7 +27,7 @@ export default function ScienceExtension() {
           <h3 className="text-2xl font-semibold text-[#1E293B] mb-2">Zooming In: The Cellular Pathway</h3>
           <Image src="/IniaCellular.png" alt="Cellular mechanism" width={800} height={600} className="my-4 rounded-md" />
           <p className="text-gray-700 text-base italic">
-            "Stimulation of the splenic nerve triggers norepinephrine release. T-cells respond by releasing acetylcholine, which binds to receptors on immune cells, reducing the release of inflammatory cytokines like TNF-α and IL-6."
+            &ldquo;Stimulation of the splenic nerve triggers norepinephrine release. T-cells respond by releasing acetylcholine, which binds to receptors on immune cells, reducing the release of inflammatory cytokines like TNF-α and IL-6.&rdquo;
           </p>
         </div>
 
@@ -34,7 +35,7 @@ export default function ScienceExtension() {
           <h3 className="text-2xl font-semibold text-[#1E293B] mb-2">The Brain-Body Connection</h3>
           <Image src="/IniaBrain.png" alt="Brain-body loop" width={800} height={600} className="my-4 rounded-md" />
           <p className="text-gray-700 text-base italic">
-            "All of this is guided by a brain-body communication loop via the vagus nerve. This pathway creates a drug-free, precisely timed response to overactive immune signaling."
+            &ldquo;All of this is guided by a brain-body communication loop via the vagus nerve. This pathway creates a drug-free, precisely timed response to overactive immune signaling.&rdquo;
           </p>
         </div>
 
