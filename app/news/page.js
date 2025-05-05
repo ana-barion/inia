@@ -1,10 +1,10 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
 import Footer from "../../components/layout/Footer";
 import Header from "../../components/layout/Header";
-
 import { client } from "../../sanity/lib/client";
 
 function formatDate(dateString) {
