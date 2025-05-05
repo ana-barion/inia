@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+
 import Image from "next/image";
 
 import Footer from "../../components/layout/Footer";
@@ -61,16 +62,17 @@ export default function News() {
       const params = {};
 
       if (activeFilter !== "All") {
-        query += ' && type == $type';
+        query += " && type == $type";
         params.type = activeFilter;
       }
 
       if (searchQuery) {
-        query += ' && (title match $search || description match $search)';
+        query += " && (title match $search || description match $search)";
         params.search = `*${searchQuery}*`;
       }
 
-      query += '] | order(date desc){ _id, title, description, date, type, featured, "imageURL": image.asset->url }';
+      query +=
+        '] | order(date desc){ _id, title, description, date, type, featured, "imageURL": image.asset->url }';
 
       const data = await client.fetch(query, params);
       setNewsItems(data);
@@ -78,7 +80,6 @@ export default function News() {
 
     fetchNews();
   }, [activeFilter, searchQuery]);
-
 
   useEffect(() => {
     if (selectedNews) {
@@ -289,9 +290,9 @@ export default function News() {
 
         {filteredNews.length === 0 && (
           <div className="container mx-auto px-4 py-20 text-center">
-          <p className="text-gray-500">
-            No news found for &quot;{activeFilter}&quot;.
-          </p>
+            <p className="text-gray-500">
+              No news found for &quot;{activeFilter}&quot;.
+            </p>
           </div>
         )}
 
