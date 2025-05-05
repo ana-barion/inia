@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import * as THREE from "three";
 import "vanta/dist/vanta.cells.min"; // side-effect import
@@ -7,8 +7,10 @@ import "vanta/dist/vanta.cells.min"; // side-effect import
 export default function Hero() {
   const vantaRef = useRef(null);
   const vantaEffect = useRef(null);
+  const [vantaReady, setVantaReady] = useState(false);
 
   useEffect(() => {
+    let fallbackTimeout;
     if (
       !vantaEffect.current &&
       vantaRef.current &&
@@ -30,12 +32,17 @@ export default function Hero() {
         colorMode: "lerpGradient",
         size: 1.2,
       });
+      setVantaReady(true);
+    } else {
+      // fallback: show hero after 1.2s if Vanta fails
+      fallbackTimeout = setTimeout(() => setVantaReady(true), 1200);
     }
     return () => {
       if (vantaEffect.current) {
         vantaEffect.current.destroy();
         vantaEffect.current = null;
       }
+      if (fallbackTimeout) clearTimeout(fallbackTimeout);
     };
   }, []);
 
@@ -47,48 +54,53 @@ export default function Hero() {
         color: "white",
         paddingTop: "6rem",
         paddingBottom: "6rem",
+        background: vantaReady ? "none" : "#0a2239", // fallback color
+        opacity: vantaReady ? 1 : 0, // hide until ready
+        transition: "opacity 0.2s",
       }}
     >
-      <div className="max-w-2xl z-10">
-        <h1
-          className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight"
-          style={{
-            color: "var(--inia-primary-teal)",
-            letterSpacing: "-1px",
-          }}
-        >
-          Harnessing ultrasound bioelectronics
-          <br />
-          for the future of healthcare
-        </h1>
-        <p className="text-2xl mb-10 font-light" style={{ color: "white" }}>
-          Revolutionizing psoriasis treatment through innovative bioelectronic
-          medicine
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 items-center text-center w-full">
-          <button
-            className="w-full max-w-xs sm:w-auto px-8 py-4 rounded-full font-bold text-lg shadow-lg transition-transform hover:scale-105 whitespace-nowrap"
+      {vantaReady && (
+        <div className="max-w-2xl z-10">
+          <h1
+            className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight"
             style={{
-              background:
-                "linear-gradient(90deg, var(--inia-primary-gold), var(--inia-primary-teal))",
-              color: "white",
-              boxShadow: "0 2px 12px 0 rgba(46,196,182,0.15)",
-            }}
-          >
-            Learn About Our Treatment
-          </button>
-          <button
-            className="w-full max-w-xs sm:w-auto px-8 py-4 rounded-full font-bold text-lg border-2 transition-transform hover:scale-105 whitespace-nowrap"
-            style={{
-              borderColor: "var(--inia-primary-teal)",
               color: "var(--inia-primary-teal)",
-              background: "white",
+              letterSpacing: "-1px",
             }}
           >
-            For Healthcare Providers
-          </button>
+            Harnessing ultrasound bioelectronics
+            <br />
+            for the future of healthcare
+          </h1>
+          <p className="text-2xl mb-10 font-light" style={{ color: "white" }}>
+            Revolutionizing psoriasis treatment through innovative bioelectronic
+            medicine
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 items-center text-center w-full">
+            <button
+              className="w-full max-w-xs sm:w-auto px-8 py-4 rounded-full font-bold text-lg shadow-lg transition-transform hover:scale-105 whitespace-nowrap"
+              style={{
+                background:
+                  "linear-gradient(90deg, var(--inia-primary-gold), var(--inia-primary-teal))",
+                color: "white",
+                boxShadow: "0 2px 12px 0 rgba(46,196,182,0.15)",
+              }}
+            >
+              Learn About Our Treatment
+            </button>
+            <button
+              className="w-full max-w-xs sm:w-auto px-8 py-4 rounded-full font-bold text-lg border-2 transition-transform hover:scale-105 whitespace-nowrap"
+              style={{
+                borderColor: "var(--inia-primary-teal)",
+                color: "var(--inia-primary-teal)",
+                background: "white",
+              }}
+            >
+              For Healthcare Providers
+            </button>
+          </div>
         </div>
-      </div>
+      )}
       {/* Abstract SVG background */}
       <svg
         className="absolute right-0 bottom-0 z-0 opacity-30 hidden md:block"
