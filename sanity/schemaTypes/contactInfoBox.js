@@ -3,7 +3,7 @@ import { defineField, defineType } from "sanity";
 export const contactInfoBox = defineType({
   name: "contactInfoBox",
   title: "Contact Info Box Content",
-  type: "document",
+  type: "document", 
   
   fields: [
     defineField({
