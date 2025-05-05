@@ -45,13 +45,13 @@ export default function ScienceExtension() {
           </p>
           <ul className="list-disc list-inside text-gray-700 text-sm space-y-2">
             <li>
-              Borovikova LV et al. <i>Vagus nerve stimulation attenuates the systemic inflammatory response to endotoxin.</i> <a href="https://pubmed.ncbi.nlm.nih.gov/11517335" className="text-blue-500 underline" target="_blank">PubMed</a>
+              Borovikova LV et al. <i>Vagus nerve stimulation attenuates the systemic inflammatory response to endotoxin.</i> <a href="https://pubmed.ncbi.nlm.nih.gov/11517335" className="text-blue-500 underline" target="_blank" rel="noopener noreferrer">PubMed</a>
             </li>
             <li>
-              Koopman FA et al. <i>Vagus nerve stimulation inhibits cytokine production in rheumatoid arthritis.</i> <a href="https://pubmed.ncbi.nlm.nih.gov/27535621" className="text-blue-500 underline" target="_blank">PubMed</a>
+              Koopman FA et al. <i>Vagus nerve stimulation inhibits cytokine production in rheumatoid arthritis.</i> <a href="https://pubmed.ncbi.nlm.nih.gov/27535621" className="text-blue-500 underline" target="_blank" rel="noopener noreferrer">PubMed</a>
             </li>
             <li>
-              Bonaz B et al. <i>Vagus nerve stimulation: from epilepsy to the microbiota-gut-brain axis.</i> <a href="https://pubmed.ncbi.nlm.nih.gov/33358636" className="text-blue-500 underline" target="_blank">PubMed</a>
+              Bonaz B et al. <i>Vagus nerve stimulation: from epilepsy to the microbiota-gut-brain axis.</i> <a href="https://pubmed.ncbi.nlm.nih.gov/33358636" className="text-blue-500 underline" target="_blank" rel="noopener noreferrer">PubMed</a>
             </li>
           </ul>
         </div>
