@@ -11,7 +11,7 @@ export default function ScienceExtension() {
         <div>
           <h2 className="text-3xl font-bold text-[#1E293B] mb-4">The Science Behind Neuromodulation</h2>
           <p className="text-gray-700 text-lg">
-            Neuromodulation represents a new frontier in drug-free inflammation control. By combining the precision of bioelectronic medicine with the safety of non-invasive ultrasound, this approach leverages the body's own neural circuitry to restore immune balance. This approach taps into the inflammatory reflex — a natural pathway that modulates cytokine release — without the use of systemic immunosuppressants or invasive implants.
+            Neuromodulation represents a new frontier in drug-free inflammation control. By combining the precision of bioelectronic medicine with the safety of non-invasive ultrasound, this approach leverages the body&apos;s own neural circuitry to restore immune balance. This approach taps into the inflammatory reflex — a natural pathway that modulates cytokine release — without the use of systemic immunosuppressants or invasive implants.
           </p>
         </div>
 
