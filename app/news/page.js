@@ -1,6 +1,9 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
+
 import Image from "next/image";
+
 import Footer from "../../components/layout/Footer";
 import Header from "../../components/layout/Header";
 import { client } from "../../sanity/lib/client";
@@ -49,25 +52,34 @@ export default function News() {
   const [currentPage, setCurrentPage] = useState(1);
   const [newsItems, setNewsItems] = useState([]);
   const [selectedNews, setSelectedNews] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const filters = ["All", "Press Release", "Research", "Media"];
 
   useEffect(() => {
     const fetchNews = async () => {
-      const data = await client.fetch(`*[_type == "news"] | order(date desc){
-        _id,
-        title,
-        slug,
-        description,
-        date,
-        type,
-        featured,
-        "imageURL": image.asset->url
-      }`);
+      let query = '*[_type == "news"';
+      const params = {};
+
+      if (activeFilter !== "All") {
+        query += " && type == $type";
+        params.type = activeFilter;
+      }
+
+      if (searchQuery) {
+        query += " && (title match $search || description match $search)";
+        params.search = `*${searchQuery}*`;
+      }
+
+      query +=
+        '] | order(date desc){ _id, title, description, date, type, featured, slug, "imageURL": image.asset->url }';
+
+      const data = await client.fetch(query, params);
       setNewsItems(data);
     };
+
     fetchNews();
-  }, []);
+  }, [activeFilter, searchQuery]);
 
   useEffect(() => {
     if (selectedNews) {
@@ -115,6 +127,8 @@ export default function News() {
             <input
               type="text"
               placeholder="Search news..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full md:w-1/3 p-3 border rounded-md border-gray-300 placeholder-black placeholder-font-semibold"
             />
             <div className="flex space-x-2">
@@ -276,7 +290,9 @@ export default function News() {
 
         {filteredNews.length === 0 && (
           <div className="container mx-auto px-4 py-20 text-center">
-            <p className="text-gray-500">No news found for "{activeFilter}".</p>
+            <p className="text-gray-500">
+              No news found for &quot;{activeFilter}&quot;.
+            </p>
           </div>
         )}
 
