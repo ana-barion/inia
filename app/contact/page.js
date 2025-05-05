@@ -114,10 +114,10 @@ export default function ContactPage() {
                     required
                   >
                     <option value="">-- Select --</option>
-                    <option value="patient">Patient</option>
-                    <option value="investor">Investor</option>
-                    <option value="talent">Talent</option>
-                    <option value="dermatologist">Dermatologist</option>
+                    <option value="Patient">Patient</option>
+                    <option value="Investor">Investor</option>
+                    <option value="Talent">Talent</option>
+                    <option value="Dermatologist">Dermatologist</option>
                   </select>
                 </div>
 

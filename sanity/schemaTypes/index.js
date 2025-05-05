@@ -1,3 +1,5 @@
+import {contactInfoBox } from "./contactInfoBox";
+
 export const schema = {
-  types: [],
+  types: [contactInfoBox],
 };
