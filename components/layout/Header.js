@@ -101,7 +101,7 @@ export default function Header({ header }) {
     >
       {/* Top bar with email and social links */}
       <div
-        className="w-full flex items-center justify-between px-4 h-7 md:h-8 lg:h-9 header-topbar overflow-hidden"
+        className="w-full flex items-center justify-between px-4 h-7 md:h-8 lg:h-11 header-topbar overflow-hidden"
         style={{
           background: "var(--inia-primary-teal)",
           boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
@@ -134,7 +134,7 @@ export default function Header({ header }) {
           boxShadow: "0 2px 4px rgba(0,0,0,0.05)",
         }}
       >
-        <div className="w-full px-6 sm:px-8 md:px-10 lg:px-12 flex items-center h-14 md:h-16 lg:h-20 justify-between flex-nowrap overflow-x-hidden gap-x-2">
+        <div className="w-full px-6 sm:px-8 md:px-10 lg:px-12 flex items-center h-14 md:h-16 lg:h-28 justify-between flex-nowrap overflow-x-hidden gap-x-2">
           {/* Left: Logo */}
           <div className="flex items-center flex-shrink-0 min-w-0 h-full pl-4 md:pl-6">
             <Link
@@ -146,7 +146,7 @@ export default function Header({ header }) {
                 <Image
                   {...logoProps}
                   alt={header?.logo?.alt || "INIA Logo"}
-                  className="w-full max-w-[140px] h-9 sm:max-w-[200px] sm:h-12 md:max-w-[240px] md:h-14 lg:h-16 object-contain align-middle transition-transform duration-300 ease-in-out"
+                  className="w-full max-w-[140px] h-9 sm:max-w-[200px] sm:h-12 md:max-w-[240px] md:h-14 lg:max-w-[300px] lg:h-24 object-contain align-middle transition-transform duration-300 ease-in-out"
                   style={{
                     position: "relative",
                     top: "3px",
@@ -171,12 +171,12 @@ export default function Header({ header }) {
           </div>
 
           {/* Center: Navigation (hidden on mobile) */}
-          <nav className="min-w-0 flex-1 justify-center items-center space-x-6 sm:space-x-8 md:space-x-10 hidden lg:flex">
+          <nav className="min-w-0 flex-1 justify-center items-center hidden xl:flex xl:space-x-8 2xl:space-x-10">
             {enabledNavLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative px-2 py-1 text-sm font-semibold tracking-widest uppercase text-[var(--inia-primary-blue)] hover:text-[var(--inia-primary-gold)] transition-colors duration-200 group nav-link-underline ${
+                className={`relative px-2 py-1 text-sm lg:text-lg font-semibold tracking-widest uppercase text-[var(--inia-primary-blue)] hover:text-[var(--inia-primary-gold)] transition-colors duration-200 group nav-link-underline ${
                   link.style === "secondary" ? "nav-secondary" : ""
                 }`}
                 style={{ letterSpacing: 2 }}
@@ -192,7 +192,7 @@ export default function Header({ header }) {
             {ctaButton?.isEnabled && (
               <Link
                 href={ctaButton.href}
-                className={`mr-2 sm:ml-6 md:ml-8 inline-flex items-center justify-center px-3 sm:px-5 py-2 sm:py-2.5 lg:py-3 rounded-full shadow text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-widest transition-all duration-300 join-cta-btn whitespace-nowrap w-full max-w-[110px] sm:max-w-[150px] md:max-w-[190px] min-w-[70px] hidden lg:inline-flex flex-shrink-0 ${
+                className={`mr-2 sm:ml-6 md:ml-8 inline-flex items-center justify-center px-3 sm:px-5 lg:px-7 py-2 sm:py-2.5 lg:py-4 rounded-full shadow text-[10px] sm:text-xs md:text-sm lg:text-lg font-bold uppercase tracking-widest transition-all duration-300 join-cta-btn whitespace-nowrap w-full max-w-[110px] sm:max-w-[150px] md:max-w-[190px] lg:max-w-[220px] min-w-[70px] hidden xl:inline-flex flex-shrink-0 ${
                   ctaButton.style === "secondary" ? "cta-secondary" : ""
                 }`}
                 style={{
@@ -210,9 +210,9 @@ export default function Header({ header }) {
                 <span className="hidden lg:block">{ctaButton.text}</span>
               </Link>
             )}
-            {/* Hamburger button (mobile only) */}
+            {/* Hamburger button (mobile & smaller desktop) */}
             <button
-              className="ml-2 sm:ml-4 flex lg:hidden items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded focus:outline-none focus:ring-2 focus:ring-[var(--inia-primary-teal)] relative"
+              className="ml-2 sm:ml-4 flex xl:hidden items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded focus:outline-none focus:ring-2 focus:ring-[var(--inia-primary-teal)] relative"
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={isMenuOpen}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
