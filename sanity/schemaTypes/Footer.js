@@ -1,4 +1,5 @@
-// schemas/footer.js
+import footer from "./Footer";
+
 export default {
   name: "footer",
   title: "Footer",
