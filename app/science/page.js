@@ -6,6 +6,7 @@ import Image from "next/image";
 
 import Footer from "../../components/layout/Footer";
 import Header from "../../components/layout/Header";
+import ScienceExtension from "../../components/ScienceExtension";
 
 export default function SciencePage() {
   const pageRef = useRef(null);
@@ -364,6 +365,7 @@ export default function SciencePage() {
           </section>
         </div>
       </main>
+      <ScienceExtension />
       <Footer />
     </div>
   );

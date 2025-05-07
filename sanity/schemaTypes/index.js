@@ -1,5 +1,11 @@
-import { teamMember, leadershipMember, teamIntro } from "./teamMember";
+import { teamMember, leadershipMember, teamIntro } from './teamMember';
+import sciencePage, { accordionItem, threeMinuteStep } from './science';
 
-export const schema = {
-  types: [teamMember, leadershipMember, teamIntro],
-};
+export default [
+  teamMember,
+  leadershipMember,
+  teamIntro,
+  accordionItem,
+  threeMinuteStep,
+  sciencePage,
+];
