@@ -5,7 +5,6 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
 import Footer from "../../components/layout/Footer";
-import Header from "../../components/layout/Header";
 import ScienceExtension from "../../components/ScienceExtension";
 
 export default function SciencePage() {
@@ -103,7 +102,6 @@ export default function SciencePage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      <Header />
       <main className="flex-grow">
         <div
           ref={pageRef}

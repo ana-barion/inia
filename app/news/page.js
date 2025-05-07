@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Image from "next/image";
 
 import Footer from "../../components/layout/Footer";
-import Header from "../../components/layout/Header";
 
 const newsData = [
   {
@@ -117,7 +116,6 @@ export default function News() {
 
   return (
     <div className="flex flex-col min-h-screen bg-white text-gray-800">
-      <Header />
       <main className="flex-grow">
         <div className="container mx-auto px-4 py-20">
           <h1 className="text-5xl mb-8">Latest News & Updates</h1>

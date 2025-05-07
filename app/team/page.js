@@ -1,7 +1,6 @@
 import Image from "next/image";
 
 import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
 import { client } from "@/sanity/lib/client";
 
 const introQuery = `*[_type == "teamIntro"][0]{
@@ -42,7 +41,6 @@ export default async function TeamPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-white text-gray-800">
-      <Header />
       <main className="flex-grow">
         {/* Intro Section */}
         <section className="text-center py-16 px-6">

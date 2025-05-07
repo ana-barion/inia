@@ -1,79 +1,14 @@
 import Image from "next/image";
 
 import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
+import Hero from "@/components/layout/Hero";
 
-export default function Home() {
+export default async function Home() {
   return (
     <div className="flex flex-col min-h-screen" style={{ background: "white" }}>
-      <Header />
-      {/* Main Content */}
       <main className="flex-grow">
         {/* Hero Section */}
-        <section
-          className="w-full flex flex-col md:flex-row items-center justify-between min-h-[80vh] px-4 md:px-0 relative overflow-hidden"
-          style={{
-            background:
-              "linear-gradient(120deg, #0a2239 60%, var(--inia-primary-blue) 100%)",
-            color: "white",
-            paddingTop: "6rem",
-            paddingBottom: "6rem",
-          }}
-        >
-          <div className="max-w-2xl z-10">
-            <h1
-              className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight"
-              style={{
-                color: "var(--inia-primary-teal)",
-                letterSpacing: "-1px",
-              }}
-            >
-              Harnessing ultrasound bioelectronics
-              <br />
-              for the future of healthcare
-            </h1>
-            <p className="text-2xl mb-10 font-light" style={{ color: "white" }}>
-              Revolutionizing psoriasis treatment through innovative
-              bioelectronic medicine
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 items-center text-center w-full">
-              <button
-                className="w-full max-w-xs sm:w-auto px-8 py-4 rounded-full font-bold text-lg shadow-lg transition-transform hover:scale-105 whitespace-nowrap"
-                style={{
-                  background:
-                    "linear-gradient(90deg, var(--inia-primary-gold), var(--inia-primary-teal))",
-                  color: "white",
-                  boxShadow: "0 2px 12px 0 rgba(46,196,182,0.15)",
-                }}
-              >
-                Learn About Our Treatment
-              </button>
-              <button
-                className="w-full max-w-xs sm:w-auto px-8 py-4 rounded-full font-bold text-lg border-2 transition-transform hover:scale-105 whitespace-nowrap"
-                style={{
-                  borderColor: "var(--inia-primary-teal)",
-                  color: "var(--inia-primary-teal)",
-                  background: "white",
-                }}
-              >
-                For Healthcare Providers
-              </button>
-            </div>
-          </div>
-          {/* Abstract SVG background */}
-          <svg
-            className="absolute right-0 bottom-0 z-0 opacity-30 hidden md:block"
-            width="600"
-            height="600"
-            viewBox="0 0 600 600"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            style={{ right: "-100px", bottom: "-100px" }}
-          >
-            <circle cx="300" cy="300" r="300" fill="var(--inia-primary-gold)" />
-            <circle cx="400" cy="400" r="180" fill="var(--inia-primary-teal)" />
-          </svg>
-        </section>
+        <Hero />
 
         {/* Trusted By Section */}
         <section style={{ background: "white" }} className="py-16">
