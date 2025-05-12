@@ -1,10 +1,10 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
+
 import Image from "next/image";
 
 import Footer from "../../components/layout/Footer";
-import Header from "../../components/layout/Header";
-
 import { client } from "../../sanity/lib/client";
 
 function formatDate(dateString) {
@@ -29,7 +29,6 @@ function formatDescFeatured(desc) {
   }
   return desc.slice(0, 197) + "...";
 }
-
 
 export const getNewsBySlug = async (slug) => {
   const query = `*[_type == "news" && slug.current == $slug][0] {
