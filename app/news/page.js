@@ -49,6 +49,8 @@ export default function News() {
   const [currentPage, setCurrentPage] = useState(1);
   const [newsItems, setNewsItems] = useState([]);
   const [selectedNews, setSelectedNews] = useState(null);
+  const [searchString, setSearchString] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
   const filters = ["All", "Press Release", "Research", "Media"];
 
@@ -105,19 +107,92 @@ export default function News() {
   const totalPages = filteredNews.length;
   const currentNews = filteredNews[currentPage - 1];
 
+  const handleSearch = async () => {
+    if (!searchString.trim()) return;
+
+    const searchQuery = `
+  *[_type == "news" && (title match "*" + $queryString + "*" || description match "*" + $queryString + "*")]{
+    _id,
+    title,
+    slug,
+    description,
+    date,
+    type,
+    featured,
+    "imageURL": image.asset->url
+  }
+`;
+
+    try {
+      const data = await client.fetch(searchQuery, {
+        queryString: searchString,
+      });
+      console.log("Search results:", data);
+      setSearchResults(data.slice(0, 2));
+    } catch (error) {
+      console.error("Sanity fetch failed:", error);
+    }
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-white text-gray-800">
       <Header />
       <main className="flex-grow">
-        <div className="container mx-auto px-4 py-20">
-          <h1 className="text-5xl mb-8">Latest News & Updates</h1>
-          <div className="flex justify-between items-center mb-6">
-            <input
-              type="text"
-              placeholder="Search news..."
-              className="w-full md:w-1/3 p-3 border rounded-md border-gray-300 placeholder-black placeholder-font-semibold"
-            />
-            <div className="flex space-x-2">
+        <div className="container mx-auto px-4 py-10 sm:py-20">
+          <h1 className="text-3xl sm:text-5xl mb-6 sm:mb-8">
+            Latest News & Updates
+          </h1>
+          <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
+            <div className="relative w-full sm:w-1/3">
+              <input
+                type="text"
+                placeholder="Search news..."
+                className="w-full p-3 border rounded-md border-gray-300"
+                value={searchString}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  setSearchString(val);
+
+                  if (!val.trim()) {
+                    setSearchResults([]);
+                  }
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleSearch();
+                  }
+                }}
+              />
+              <button
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                onClick={handleSearch}
+              >
+                <Image
+                  src="/search-icon.svg"
+                  alt="Search"
+                  width={20}
+                  height={20}
+                />
+              </button>
+
+              {searchResults.length > 0 && (
+                <div className="absolute left-0 w-full mt-2 bg-white shadow rounded border z-50">
+                  {searchResults.map((item) => (
+                    <div
+                      key={item._id}
+                      className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                      onClick={() => handleReadMore(item.slug.current)}
+                    >
+                      <p className="text-sm font-medium">{item.title}</p>
+                      <p className="text-xs text-gray-600 truncate">
+                        {item.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+            <div className="flex flex-wrap gap-2">
               {filters.map((filter) => (
                 <button
                   key={filter}
