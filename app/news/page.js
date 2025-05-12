@@ -28,6 +28,7 @@ function formatDescFeatured(desc) {
   return desc.slice(0, 197) + "...";
 }
 
+
 export const getNewsBySlug = async (slug) => {
   const query = `*[_type == "news" && slug.current == $slug][0] {
     _id,
@@ -136,7 +137,6 @@ export default function News() {
 
   return (
     <div className="flex flex-col min-h-screen bg-white text-gray-800">
-      <Header />
       <main className="flex-grow">
         <div className="container mx-auto px-4 py-10 sm:py-20">
           <h1 className="text-3xl sm:text-5xl mb-6 sm:mb-8">
