@@ -1,8 +1,10 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+
 import Footer from "../../components/layout/Footer";
 import Header from "../../components/layout/Header";
+
 import { client } from "../../sanity/lib/client";
 
 function formatDate(dateString) {
@@ -181,7 +183,13 @@ export default function News() {
                     <div
                       key={item._id}
                       className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                      role="button"
+                      tabIndex={0}
                       onClick={() => handleReadMore(item.slug.current)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter")
+                          handleReadMore(item.slug.current);
+                      }}
                     >
                       <p className="text-sm font-medium">{item.title}</p>
                       <p className="text-xs text-gray-600 truncate">
