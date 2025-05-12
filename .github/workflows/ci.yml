@@ -12,6 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
+      SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
+
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
@@ -59,6 +61,7 @@ jobs:
     needs: check
     env:
       NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
+      SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
