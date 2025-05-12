@@ -2,7 +2,6 @@
 import { useState } from "react";
 
 import Footer from "../../components/layout/Footer";
-import Header from "../../components/layout/Header";
 
 export default function ContactPage() {
   const [role, setRole] = useState("");
@@ -61,7 +60,6 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header />
       <main className="relative">
         {/* Hero Section */}
         <div className="relative overflow-hidden bg-white py-24">

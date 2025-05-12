@@ -1,7 +1,10 @@
-"use client";
+import React from "react";
 
 import { Geist, Geist_Mono } from "next/font/google";
 import PropTypes from "prop-types";
+
+import BodyWithHeader from "@/components/layout/BodyWithHeader";
+import { getHeader } from "@/lib/sanity/queries";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,7 +17,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const header = await getHeader();
+
   return (
     <html
       lang="en"
@@ -29,9 +34,7 @@ export default function RootLayout({ children }) {
           content="INIA Biosciences - Revolutionizing healthcare through innovative biomarker research and personalized medicine solutions."
         />
       </head>
-      <body className="antialiased bg-white text-black dark:bg-black dark:text-white">
-        {children}
-      </body>
+      <BodyWithHeader header={header}>{children}</BodyWithHeader>
     </html>
   );
 }
