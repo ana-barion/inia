@@ -6,6 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useNextSanityImage } from "next-sanity-image";
 import PropTypes from "prop-types";
+import SearchBar from './SearchBar'; // or '../ui/SearchBar' depending where you saved it
+
 
 import { client } from "@/sanity/lib/client";
 
@@ -188,7 +190,11 @@ export default function Header({ header }) {
           </nav>
 
           {/* Right: CTA and Hamburger */}
-          <div className="flex items-center flex-shrink-0 min-w-0 justify-end">
+          <div className="flex items-center flex-shrink-0 min-w-0 justify-end gap-x-4">
+  <div className="hidden xl:block w-60">
+    <SearchBar />
+  </div>
+
             {ctaButton?.isEnabled && (
               <Link
                 href={ctaButton.href}
