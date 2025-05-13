@@ -77,14 +77,13 @@ export default function SearchBar() {
         >
           <ul className="divide-y divide-gray-200">
             {results.map((r) => (
-              <li
-                key={r._id}
-                onClick={() => handleClick(r.url)}
-                className="p-3 hover:bg-gray-100 transition cursor-pointer"
-              >
-                <span className="block text-sm font-medium text-gray-900">
+              <li key={r._id}>
+                <button
+                  onClick={() => handleClick(r.url)}
+                  className="w-full text-left p-3 hover:bg-gray-100 transition text-sm font-medium text-gray-900"
+                >
                   {r.title || r.name}
-                </span>
+                </button>
               </li>
             ))}
           </ul>
