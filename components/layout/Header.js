@@ -6,8 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useNextSanityImage } from "next-sanity-image";
 import PropTypes from "prop-types";
-import SearchBar from "./SearchBar"; // or '../ui/SearchBar' depending where you saved it
 
+import SearchBar from "./SearchBar"; // or '../ui/SearchBar' depending where you saved it
 import { client } from "@/sanity/lib/client";
 
 // Separate component for social icons
