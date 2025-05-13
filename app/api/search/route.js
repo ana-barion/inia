@@ -1,14 +1,14 @@
-import { client } from '@/sanity/lib/client';
+import { client } from "@/sanity/lib/client";
 
 export async function GET(req) {
   const { searchParams } = new URL(req.url);
-  const term = searchParams.get('term');
+  const term = searchParams.get("term");
 
   if (!term) {
-    return new Response(
-      JSON.stringify({ error: 'Missing search term' }),
-      { status: 400, headers: { 'Content-Type': 'application/json' } }
-    );
+    return new Response(JSON.stringify({ error: "Missing search term" }), {
+      status: 400,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 
   try {
@@ -45,18 +45,18 @@ export async function GET(req) {
   )
 }
 `,
-      { term: `${term}*` }
+      { term: `${term}*` },
     );
 
     return new Response(JSON.stringify(results), {
       status: 200,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { "Content-Type": "application/json" },
     });
   } catch (err) {
-    console.error('Search API error:', err);
-    return new Response(
-      JSON.stringify({ error: 'Search failed' }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
-    );
+    console.error("Search API error:", err);
+    return new Response(JSON.stringify({ error: "Search failed" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 }

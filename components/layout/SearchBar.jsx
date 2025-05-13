@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 
 export default function SearchBar() {
-  const [term, setTerm] = useState('');
+  const [term, setTerm] = useState("");
   const [results, setResults] = useState([]);
   const inputRef = useRef(null);
   const [inputPos, setInputPos] = useState({ top: 0, left: 0, width: 0 });
@@ -24,8 +24,8 @@ export default function SearchBar() {
       }
     };
     measure();
-    window.addEventListener('resize', measure);
-    return () => window.removeEventListener('resize', measure);
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
   }, [term]);
 
   // Debounced fetch
@@ -48,7 +48,7 @@ export default function SearchBar() {
 
   const handleClick = (url) => {
     setResults([]);
-    setTerm('');
+    setTerm("");
     router.push(url);
   };
 
