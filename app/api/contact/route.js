@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer';
+import nodemailer from "nodemailer";
 
 export async function POST(req) {
   try {
@@ -23,7 +23,7 @@ ${message}
 
     // Set up transporter
     const transporter = nodemailer.createTransport({
-      service: 'gmail', // or your email provider
+      service: "gmail", // or your email provider
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
@@ -33,7 +33,7 @@ ${message}
     // Send email
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
-      to: 'placeholderjohnsmith333@gmail.com', // replace with your destination address
+      to: "placeholderjohnsmith333@gmail.com", // <---- Replace with your destination address
       subject,
       text: emailText,
     });
