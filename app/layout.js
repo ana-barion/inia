@@ -1,25 +1,16 @@
 "use client";
 
-import { Geist, Geist_Mono } from "next/font/google";
 import PropTypes from "prop-types";
 import "./globals.css";
+import { Inter, Roboto_Mono } from "next/font/google";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// keep variable names so existing CSS continues to work
+const GeistSans = Inter({ variable: "--font-geist-sans", subsets: ["latin"] });
+const GeistMono = Roboto_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   return (
-    <html
-      lang="en"
-      className={`dark ${geistSans.variable} ${geistMono.variable}`}
-    >
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/dolphin.png" type="image/svg+xml" />
@@ -36,6 +27,4 @@ export default function RootLayout({ children }) {
   );
 }
 
-RootLayout.propTypes = {
-  children: PropTypes.node.isRequired,
-};
+RootLayout.propTypes = { children: PropTypes.node.isRequired };
