@@ -1,25 +1,13 @@
 "use client";
 
-import { Geist, Geist_Mono } from "next/font/google";
 import PropTypes from "prop-types";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export default function RootLayout({ children }) {
   return (
-    <html
-      lang="en"
-      className={`dark ${geistSans.variable} ${geistMono.variable}`}
-    >
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/dolphin.png" type="image/svg+xml" />
@@ -35,6 +23,7 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+
 
 RootLayout.propTypes = {
   children: PropTypes.node.isRequired,
