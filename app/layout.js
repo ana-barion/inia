@@ -1,30 +1,16 @@
-import React from "react";
+"use client";
 
-import { Geist, Geist_Mono } from "next/font/google";
 import PropTypes from "prop-types";
-
-import BodyWithHeader from "@/components/layout/BodyWithHeader";
-import { getHeader } from "@/lib/sanity/queries";
 import "./globals.css";
+import { Inter, Roboto_Mono } from "next/font/google";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+// keep variable names so existing CSS continues to work
+const GeistSans = Inter({ variable: "--font-geist-sans", subsets: ["latin"] });
+const GeistMono = Roboto_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export default async function RootLayout({ children }) {
-  const header = await getHeader();
-
+export default function RootLayout({ children }) {
   return (
-    <html
-      lang="en"
-      className={`dark ${geistSans.variable} ${geistMono.variable}`}
-    >
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/dolphin.png" type="image/svg+xml" />
@@ -34,11 +20,11 @@ export default async function RootLayout({ children }) {
           content="INIA Biosciences - Revolutionizing healthcare through innovative biomarker research and personalized medicine solutions."
         />
       </head>
-      <BodyWithHeader header={header}>{children}</BodyWithHeader>
+      <body className="antialiased bg-white text-black dark:bg-black dark:text-white">
+        {children}
+      </body>
     </html>
   );
 }
 
-RootLayout.propTypes = {
-  children: PropTypes.node.isRequired,
-};
+RootLayout.propTypes = { children: PropTypes.node.isRequired };
