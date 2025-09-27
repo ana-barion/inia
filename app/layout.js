@@ -4,16 +4,9 @@ import PropTypes from "prop-types";
 import "./globals.css";
 import { Inter, Roboto_Mono } from "next/font/google";
 
-// keep the same variable names your CSS expects:
-const GeistSans = Inter({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const GeistMono = Roboto_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// keep variable names so existing CSS continues to work
+const GeistSans = Inter({ variable: "--font-geist-sans", subsets: ["latin"] });
+const GeistMono = Roboto_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   return (
@@ -34,6 +27,4 @@ export default function RootLayout({ children }) {
   );
 }
 
-RootLayout.propTypes = {
-  children: PropTypes.node.isRequired,
-};
+RootLayout.propTypes = { children: PropTypes.node.isRequired };
