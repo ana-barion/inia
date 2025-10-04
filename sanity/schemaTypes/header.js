@@ -31,7 +31,7 @@ const linkType = {
   ],
 };
 
-export default {
+const header = {
   name: "header",
   title: "Header",
   type: "document",
@@ -316,3 +316,4 @@ export default {
   },
   types: [linkType],
 };
+export default header;

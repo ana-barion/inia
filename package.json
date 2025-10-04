@@ -19,7 +19,7 @@
     "client@latest": "link:sanity/client@latest",
     "framer-motion": "^12.10.1",
     "next": "15.2.2",
-    "next-sanity": "^9.11.0",
+    "next-sanity": "^11.4.2",
     "next-sanity-image": "^6.1.1",
     "prop-types": "^15.8.1",
     "react": "^19.1.0",

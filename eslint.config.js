@@ -15,6 +15,10 @@ const compat = new FlatCompat({
 });
 
 const config = [
+  {
+    // ⬇️ put ignores in their own object at the very top
+    ignores: ["node_modules/**", ".next/**", "out/**", "public/**"],
+  },
   js.configs.recommended,
   ...compat.extends(
     "next/core-web-vitals",
@@ -40,13 +44,11 @@ const config = [
       },
     },
     settings: {
-      // Add settings for import resolver
       "import/resolver": {
         node: {
           extensions: [".js", ".jsx"],
           paths: ["."],
         },
-        // Remove alias resolver since package isn't installed
       },
     },
     linterOptions: {
@@ -63,7 +65,7 @@ const config = [
       "import/no-unresolved": [
         "error",
         {
-          ignore: ["^@/", "react-intersection-observer"], // Ignore imports starting with @/ and the react-intersection-observer package
+          ignore: ["^@/", "react-intersection-observer"],
         },
       ],
       "import/order": [
@@ -88,7 +90,6 @@ const config = [
       "prettier/prettier": "error",
     },
     files: ["**/*.{js,jsx,ts,tsx}"],
-    ignores: ["node_modules/**", ".next/**", "out/**", "public/**"],
   },
 ];
 
