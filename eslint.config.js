@@ -16,7 +16,7 @@ const compat = new FlatCompat({
 
 const config = [
   {
-    // ⬇️ put ignores in their own object at the very top
+    // ⬇️ Ignore build/system folders
     ignores: ["node_modules/**", ".next/**", "out/**", "public/**"],
   },
   js.configs.recommended,
@@ -55,11 +55,11 @@ const config = [
       reportUnusedDisableDirectives: true,
     },
     rules: {
-      // 🧹 Disable annoying rules that break the Vercel build
+      // 🧹 Disable rules causing build failure
       "import/order": "off",
       "prettier/prettier": "off",
 
-      // ✅ Keep essential React and accessibility rules
+      // ✅ Keep essential React & Next.js rules
       "react/react-in-jsx-scope": "off",
       "react/prop-types": "error",
       "@next/next/no-html-link-for-pages": "error",
@@ -68,6 +68,7 @@ const config = [
       "jsx-a11y/aria-role": "error",
       "react/no-unescaped-entities": "error",
 
+      // Allow unresolved imports for custom aliases
       "import/no-unresolved": [
         "error",
         {
