@@ -60,6 +60,11 @@
   "pnpm": {
     "onlyBuiltDependencies": [
       "sharp"
+    ],
+    "ignoredBuiltDependencies": [
+      "esbuild",
+      "puppeteer",
+      "unrs-resolver"
     ]
   },
   "lint-staged": {
