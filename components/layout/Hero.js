@@ -1,8 +1,9 @@
 "use client";
+import "vanta/dist/vanta.cells.min";
+
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import * as THREE from "three";
-import "vanta/dist/vanta.cells.min";
 
 
 export default function Hero() {
