@@ -1,17 +1,15 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 
-import { useRouter } from "next/navigation"; // ✅ import router
-
+import { useRouter } from "next/navigation";
 import * as THREE from "three";
-
 import "vanta/dist/vanta.cells.min";
 
 export default function Hero() {
   const vantaRef = useRef(null);
   const vantaEffect = useRef(null);
   const [vantaReady, setVantaReady] = useState(false);
-  const router = useRouter(); // ✅ hook for navigation
+  const router = useRouter();
 
   useEffect(() => {
     let fallbackTimeout;
