@@ -19,6 +19,7 @@ This repository contains the Inia Biosciences website project for CS410 Intro to
   - [Key Technologies](#key-technologies)
   - [Basic React & Next.js Concepts](#basic-react--nextjs-concepts)
   - [Making Your First Code Change](#making-your-first-code-change)
+  - [Sanity CMS](#sanity-cms)
 - [Git Workflow](#git-workflow)
   - [What is Git?](#what-is-git)
   - [Basic Git Commands](#basic-git-commands)
@@ -383,8 +384,362 @@ Simple explanation of each part:
   - Saves time and prevents style disagreements
 
 - **Husky**: Git hooks to enforce code quality before commits
+
   - Runs tests and checks before allowing code to be committed
   - Helps prevent broken code from being added to the project
+
+- **Sanity CMS**: Headless content management system
+  - Provides a user-friendly interface for managing website content
+  - Separates content from code, making it easier to update content without code changes
+  - Allows content editors to work independently from developers
+  - Provides a structured approach to content modeling
+
+### Sanity CMS
+
+#### What is Sanity CMS?
+
+Sanity is a "headless" content management system (CMS), which means it separates the content management from the presentation layer. This makes it perfect for our Next.js website:
+
+- **Content Editors** can focus on creating and managing content through a user-friendly interface
+- **Developers** can focus on building the website and fetching content from Sanity using APIs
+- **Both** can work independently, improving workflow efficiency
+
+The Sanity ecosystem consists of two main parts:
+
+1. **Sanity Studio**: A customizable content editing environment (what we integrate into our project)
+2. **Content Lake**: A real-time database where all your content is stored securely in the cloud
+
+#### Project Setup
+
+Our project already has Sanity integrated with the following structure:
+
+```
+/
+├── app/                  # Next.js app directory
+│   ├── studio/          # Route for accessing Sanity Studio (/studio)
+│   │   └── [[...index]]/# Catch-all route for Sanity Studio
+│   │       └── page.jsx # Studio component
+├── sanity/              # Sanity configuration and schemas
+│   ├── lib/             # Sanity utility functions
+│   ├── schemaTypes/     # Content models/schemas
+│   ├── env.js           # Environment variables setup
+│   └── structure.js     # Studio structure customization
+├── sanity.cli.js        # Sanity CLI config
+└── sanity.config.js     # Main Sanity config
+```
+
+#### Accessing Sanity Studio
+
+The Sanity Studio is accessible at `http://localhost:3000/studio` when running the development server. This is where you'll:
+
+1. Create and edit content
+2. Manage media assets
+3. Review content changes
+4. Publish content to make it available on the live site
+
+To access Sanity Studio:
+
+```bash
+# Start the development server
+pnpm dev
+
+# Open your browser and navigate to:
+http://localhost:3000/studio
+```
+
+You'll need to log in with your Sanity account the first time.
+
+#### Content Modeling with Schemas
+
+Sanity uses schemas to define the structure of your content. Think of schemas as blueprints for your content - they define what fields a content type has, validation rules, and relationships between content.
+
+All schema files are located in the `sanity/schemaTypes` directory.
+
+**Example: Creating a Simple Schema**
+
+Let's say you want to add a "Team Member" content type:
+
+1. Create a new file in `sanity/schemaTypes/teamMember.js`:
+
+```javascript
+export default {
+  name: "teamMember",
+  title: "Team Member",
+  type: "document",
+  fields: [
+    {
+      name: "name",
+      title: "Name",
+      type: "string",
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "role",
+      title: "Role",
+      type: "string",
+    },
+    {
+      name: "image",
+      title: "Profile Image",
+      type: "image",
+      options: {
+        hotspot: true, // Enables image crop controls
+      },
+    },
+    {
+      name: "bio",
+      title: "Bio",
+      type: "array",
+      of: [{ type: "block" }], // Rich text editor
+    },
+  ],
+  preview: {
+    select: {
+      title: "name",
+      subtitle: "role",
+      media: "image",
+    },
+  },
+};
+```
+
+2. Register the schema in `sanity/schemaTypes/index.js`:
+
+```javascript
+// Import your schema
+import teamMember from "./teamMember";
+
+// Export all schemas
+export const schemaTypes = [
+  // ... other existing schemas
+  teamMember,
+];
+```
+
+3. Save the files and restart the development server
+4. Go to Sanity Studio (http://localhost:3000/studio) and you'll see a new "Team Member" document type
+
+#### Common Schema Field Types
+
+Here are some common field types you can use in your schemas:
+
+- `string`: For short text (names, titles, etc.)
+- `text`: For longer text blocks without formatting
+- `array` with `of: [{type: 'block'}]`: For rich text with formatting
+- `image`: For image uploads
+- `file`: For file uploads (PDFs, etc.)
+- `boolean`: For yes/no options
+- `number`: For numeric values
+- `datetime`: For dates and times
+- `reference`: For referring to other content types
+- `slug`: For URL-friendly identifiers
+- `object`: For grouping related fields together
+
+#### Fetching Content in Next.js
+
+To use content from Sanity in your Next.js pages, you need to use the Sanity client to fetch data:
+
+1. First, set up a client file at `sanity/lib/client.js` (should already exist):
+
+```javascript
+import { createClient } from "next-sanity";
+
+export const client = createClient({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+  apiVersion: "2023-05-03",
+  useCdn: false,
+});
+```
+
+2. Then, create a utility function to fetch data (e.g., in `sanity/lib/queries.js`):
+
+```javascript
+import { client } from "./client";
+
+export async function getTeamMembers() {
+  return await client.fetch(`*[_type == "teamMember"] | order(name asc)`);
+}
+
+export async function getTeamMemberBySlug(slug) {
+  return await client.fetch(
+    `*[_type == "teamMember" && slug.current == $slug][0]`,
+    { slug },
+  );
+}
+```
+
+3. Use these functions in your Next.js pages or components:
+
+```jsx
+// app/team/page.js
+import { getTeamMembers } from "@/sanity/lib/queries";
+import Image from "next/image";
+import { urlForImage } from "@/sanity/lib/image";
+
+export default async function TeamPage() {
+  const teamMembers = await getTeamMembers();
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {teamMembers.map((member) => (
+        <div key={member._id} className="bg-white p-6 rounded-lg shadow-md">
+          {member.image && (
+            <Image
+              src={urlForImage(member.image).url()}
+              alt={member.name}
+              width={300}
+              height={300}
+              className="rounded-full mx-auto"
+            />
+          )}
+          <h2 className="text-xl font-bold mt-4">{member.name}</h2>
+          <p className="text-gray-600">{member.role}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+```
+
+#### Working with GROQ Queries
+
+Sanity uses GROQ (Graph-Relational Object Queries) to query content. It's similar to SQL but designed specifically for structured content. Here are some common GROQ patterns:
+
+```javascript
+// Get all team members
+*[_type == "teamMember"]
+
+// Get all team members, ordered by name
+*[_type == "teamMember"] | order(name asc)
+
+// Get a specific team member by slug
+*[_type == "teamMember" && slug.current == "john-doe"][0]
+
+// Get team members with specific role
+*[_type == "teamMember" && role == "Engineer"]
+
+// Get only specific fields
+*[_type == "teamMember"] { name, role, "imageUrl": image.asset->url }
+
+// Get referenced content
+*[_type == "project"] {
+  title,
+  "teamMembers": teamMembers[]->{ name, role }
+}
+
+// Limit results
+*[_type == "blogPost"] | order(publishedAt desc)[0...5]
+```
+
+#### Image Handling with Sanity
+
+Sanity provides an image URL builder to help transform and optimize images:
+
+1. Ensure you have the `@sanity/image-url` package installed
+2. Create a utility function in `sanity/lib/image.js`:
+
+```javascript
+import imageUrlBuilder from "@sanity/image-url";
+import { client } from "./client";
+
+const builder = imageUrlBuilder(client);
+
+export function urlForImage(source) {
+  return builder.image(source);
+}
+```
+
+3. Use it in your components:
+
+```jsx
+import { urlForImage } from "@/sanity/lib/image";
+import Image from "next/image";
+
+// In your component:
+{
+  member.image && (
+    <Image
+      src={urlForImage(member.image)
+        .width(300)
+        .height(300)
+        .fit("crop")
+        .crop("focalpoint")
+        .url()}
+      alt={member.name}
+      width={300}
+      height={300}
+    />
+  );
+}
+```
+
+Common image transformations:
+
+- `.width(300)` - Set width
+- `.height(300)` - Set height
+- `.fit('crop')` - Crop to fit dimensions
+- `.crop('focalpoint')` - Use focal point for cropping
+- `.saturation(-100)` - Adjust saturation
+- `.blur(10)` - Apply blur
+- `.format('webp')` - Convert to WebP format
+
+#### Content Versioning and Publishing
+
+Sanity automatically tracks all content changes and provides a publishing workflow:
+
+1. **Drafts**: When you create or edit content, it starts as a draft
+2. **Publishing**: Click "Publish" to make content live
+3. **History**: View all previous versions and who made changes
+4. **Restore**: Roll back to a previous version if needed
+
+#### Tips for Content Editors
+
+1. **Use Live Preview**: See changes in real-time as you edit
+2. **Organize with References**: Link related content together
+3. **Use Validation Rules**: They help maintain content quality
+4. **Utilize Custom Input Components**: For specialized content entry
+5. **Collaborate**: Multiple people can work simultaneously
+
+#### Best Practices
+
+1. **Plan Your Content Model**: Think about content structure before implementation
+2. **Use References**: Create relationships between content types
+3. **Create Reusable Parts**: Use object types for content that appears in multiple places
+4. **Consider Internationalization Early**: If you might need multiple languages
+5. **Add Helpful Descriptions**: Help content editors understand fields
+6. **Set Sensible Validation**: Ensure content quality without being too restrictive
+7. **Use Arrays for Lists**: For repeatable content like FAQ items or features
+8. **Use Portable Text**: For rich text instead of plain text when formatting is needed
+
+#### Troubleshooting Common Issues
+
+1. **Content not showing up on the website**:
+
+   - Check if it's published (not just saved as a draft)
+   - Verify your query is correct
+   - Check the project ID and dataset name in environment variables
+
+2. **Images not loading**:
+
+   - Make sure you're using the image URL builder correctly
+   - Verify the image exists in Sanity
+
+3. **Schema changes not appearing in Studio**:
+
+   - Restart the development server
+   - Make sure the schema is properly exported in the index file
+
+4. **Error: "Failed to find document"**:
+   - The content might be deleted or the ID is incorrect
+   - Check your query parameters
+
+#### Getting Help with Sanity
+
+- [Sanity Documentation](https://www.sanity.io/docs)
+- [GROQ Query Cheat Sheet](https://www.sanity.io/docs/query-cheat-sheet)
+- [Sanity Exchange](https://www.sanity.io/exchange) - Community plugins and code
+- [Sanity Slack Community](https://slack.sanity.io/)
 
 ### Basic React & Next.js Concepts
 
