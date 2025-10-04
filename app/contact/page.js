@@ -3,6 +3,32 @@ import { useState } from "react";
 
 import Footer from "../../components/layout/Footer";
 
+function SlideUpSection({ children }) {
+  const ref = useRef(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.2 },
+    );
+    if (el) io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className={`opacity-0 ${inView ? "animate-slideUp" : ""}`}>
+      {children}
+    </div>
+  );
+}
+
 export default function ContactPage() {
   const [role, setRole] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);

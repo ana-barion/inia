@@ -1,13 +1,14 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-
+import { useRouter } from "next/navigation"; // ✅ import router
 import * as THREE from "three";
-import "vanta/dist/vanta.cells.min"; // side-effect import
+import "vanta/dist/vanta.cells.min";
 
 export default function Hero() {
   const vantaRef = useRef(null);
   const vantaEffect = useRef(null);
   const [vantaReady, setVantaReady] = useState(false);
+  const router = useRouter(); // ✅ hook for navigation
 
   useEffect(() => {
     let fallbackTimeout;
@@ -34,7 +35,6 @@ export default function Hero() {
       });
       setVantaReady(true);
     } else {
-      // fallback: show hero after 1.2s if Vanta fails
       fallbackTimeout = setTimeout(() => setVantaReady(true), 1200);
     }
     return () => {
@@ -54,19 +54,16 @@ export default function Hero() {
         color: "white",
         paddingTop: "6rem",
         paddingBottom: "6rem",
-        background: vantaReady ? "none" : "#0a2239", // fallback color
-        opacity: vantaReady ? 1 : 0, // hide until ready
+        background: vantaReady ? "none" : "#0a2239",
+        opacity: vantaReady ? 1 : 0,
         transition: "opacity 0.2s",
       }}
     >
       {vantaReady && (
-        <div className="max-w-2xl z-10">
+        <div className="max-w-2xl z-10 pl-6 md:pl-12">
           <h1
             className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight"
-            style={{
-              color: "var(--inia-primary-teal)",
-              letterSpacing: "-1px",
-            }}
+            style={{ color: "var(--inia-primary-teal)", letterSpacing: "-1px" }}
           >
             Harnessing ultrasound bioelectronics
             <br />
@@ -76,8 +73,11 @@ export default function Hero() {
             Revolutionizing psoriasis treatment through innovative bioelectronic
             medicine
           </p>
+
           <div className="flex flex-col sm:flex-row gap-4 items-center text-center w-full">
+            {/* Learn About Our Treatment -> /contact */}
             <button
+              onClick={() => router.push("/contact")}
               className="w-full max-w-xs sm:w-auto px-8 py-4 rounded-full font-bold text-lg shadow-lg transition-transform hover:scale-105 whitespace-nowrap"
               style={{
                 background:
@@ -88,7 +88,10 @@ export default function Hero() {
             >
               Learn About Our Treatment
             </button>
+
+            {/* For Healthcare Providers -> /science */}
             <button
+              onClick={() => router.push("/science")}
               className="w-full max-w-xs sm:w-auto px-8 py-4 rounded-full font-bold text-lg border-2 transition-transform hover:scale-105 whitespace-nowrap"
               style={{
                 borderColor: "var(--inia-primary-teal)",
@@ -101,19 +104,6 @@ export default function Hero() {
           </div>
         </div>
       )}
-      {/* Abstract SVG background */}
-      <svg
-        className="absolute right-0 bottom-0 z-0 opacity-30 hidden md:block"
-        width="600"
-        height="600"
-        viewBox="0 0 600 600"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        style={{ right: "-100px", bottom: "-100px" }}
-      >
-        <circle cx="300" cy="300" r="300" fill="var(--inia-primary-gold)" />
-        <circle cx="400" cy="400" r="180" fill="var(--inia-primary-teal)" />
-      </svg>
     </section>
   );
 }

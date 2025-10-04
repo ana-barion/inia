@@ -20,16 +20,21 @@ export default async function Home() {
               Trusted by Leading Institutions
             </h2>
             <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20">
-              {[1, 2, 3, 4, 5].map((i) => (
-                <div
-                  key={i}
-                  style={{
-                    color: "var(--inia-secondary-light-gold)",
-                    fontSize: 28,
-                    fontWeight: 700,
-                  }}
-                >
-                  [Logo {i}]
+              {[
+                { src: "/antlerLogo.svg", alt: "Antler" },
+                { src: "/idea2-logo-cobranded.png", alt: "MIT Idea Squared" },
+                { src: "/natureLogo.png", alt: "Nature" },
+                { src: "/nucleateLogo.png", alt: "Nucleate" },
+                { src: "/Sandbox-Logo-Square-650x650.png", alt: "Sandbox" },
+              ].map((logo, i) => (
+                <div key={i} className="flex items-center justify-center">
+                  <Image
+                    src={logo.src}
+                    alt={logo.alt}
+                    width={140}
+                    height={60}
+                    style={{ objectFit: "contain" }}
+                  />
                 </div>
               ))}
             </div>
@@ -50,20 +55,21 @@ export default async function Home() {
           >
             Why Choose INIA
           </h2>
+
           <div className="grid md:grid-cols-3 gap-12">
             {[
               {
-                icon: "[ICON]",
+                icon: "/waves.svg",
                 title: "Non-Invasive Treatment",
                 desc: "Advanced ultrasound technology for gentle, effective treatment.",
               },
               {
-                icon: "[ICON]",
+                icon: "/heart-pulse.svg",
                 title: "At-Home Use",
                 desc: "Convenient treatment in the comfort of your own home.",
               },
               {
-                icon: "[ICON]",
+                icon: "/check.svg",
                 title: "Proven Results",
                 desc: "Clinically validated outcomes for lasting relief.",
               },
@@ -72,16 +78,19 @@ export default async function Home() {
                 key={item.title}
                 className="text-center flex flex-col items-center"
               >
+                {/* Gold circle with icon */}
                 <div
                   className="w-20 h-20 flex items-center justify-center rounded-full mb-6 shadow-lg"
-                  style={{
-                    background: "var(--inia-primary-gold)",
-                    color: "white",
-                    fontSize: 36,
-                  }}
+                  style={{ background: "var(--inia-primary-gold)" }}
                 >
-                  {item.icon}
+                  <Image
+                    src={item.icon}
+                    alt={item.title}
+                    width={40}
+                    height={40}
+                  />
                 </div>
+
                 <h3
                   className="text-xl font-bold mb-2 uppercase tracking-wider"
                   style={{
@@ -91,6 +100,7 @@ export default async function Home() {
                 >
                   {item.title}
                 </h3>
+
                 <p className="text-base font-light">{item.desc}</p>
               </div>
             ))}
