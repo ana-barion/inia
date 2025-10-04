@@ -1,3 +1,4 @@
+// sanity/schemaTypes/index.js
 import header from "./header";
 import sciencePage, {
   accordionItem,
@@ -8,17 +9,15 @@ import sciencePage, {
 } from "./science";
 import { teamMember, leadershipMember, teamIntro } from "./teamMember";
 
-export const schema = {
-  types: [
-    header,
-    teamMember,
-    leadershipMember,
-    teamIntro,
-    accordionItem,
-    threeMinuteStep,
-    clinicalPhase,
-    feature,
-    iniacoreStep,
-    sciencePage,
-  ],
-};
+export const schemaTypes = [
+  header,
+  teamMember,
+  leadershipMember,
+  teamIntro,
+  accordionItem,
+  threeMinuteStep,
+  clinicalPhase,
+  feature,
+  iniacoreStep,
+  sciencePage,
+];
