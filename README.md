@@ -61,8 +61,7 @@ This repository contains the Inia Biosciences website project. This document pro
 
 ### Project Goals
 
-This project is a website for Inia Biosciences built using Next.js, a React framework. The goal is to create a modern, responsive website that showcases Inia's work and services. This project is being developed as part of the CS410 Intro to Software Engineering course, providing hands-on experience with real-world software development practices and teamwork.
-
+This project is a website for Inia Biosciences built using Next.js, a React framework. The goal is to create a modern, responsive website that showcases Inia's work and services. 
 - Create a professional, responsive website for INIA
 - Learn modern web development frameworks and tools
 - Practice collaborative software development using Git
