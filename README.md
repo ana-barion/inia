@@ -1,4 +1,4 @@
-# CS410 Intro to Software Engineering - Inia Biosciences Website Project
+# Inia Biosciences Website Project
 
 This repository contains the Inia Biosciences website project for CS410 Intro to Software Engineering. This document provides all the information you'll need to get started, understand the project structure, set up your development environment, and contribute effectively.
 
